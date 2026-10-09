@@ -2,6 +2,7 @@
 node_modules/
 dist/
 .astro/
+context
 
 # Entornos
 .env
@@ -39,3 +40,10 @@ context/paleta/*.jpeg
 context/paleta/*.png
 context/paleta/*.bmp
 context/paleta/*.tiff
+
+context/referencias/*.MP4
+public/images/*.jpg
+public/images/*.jpeg
+public/images/*.png
+public/images/*.bmp
+public/images/*.tiffcontext/referencias/DJI_20260706110005_0478_D.MP4
