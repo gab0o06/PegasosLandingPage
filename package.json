@@ -1,0 +1,29 @@
+{
+  "name": "pegasos",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "images": "node scripts/process-images.mjs",
+    "ig-sniper": "node scripts/ig-sniper.mjs",
+    "ig-sniper:visible": "node scripts/ig-sniper.mjs --show",
+    "ig-sniper:more": "node scripts/ig-sniper.mjs --posts 18"
+  },
+  "dependencies": {
+    "astro": "^7.3.5",
+    "playwright-core": "^1.63.0"
+  },
+  "allowScripts": {
+    "esbuild": true
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0",
+    "sharp": "^0.35.5"
+  }
+}

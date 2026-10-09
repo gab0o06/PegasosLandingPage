@@ -1,0 +1,259 @@
+---
+// src/components/Hero.astro
+// Sección principal (hero). Edita el título, subtítulo y botones.
+
+const stats = [
+  { value: '8–17', label: 'Años de edad' },
+  { value: '100+', label: 'Jugadores formados' },
+  { value: 'Canchas de la Luz', label: 'Sede principal' },
+  { value: 'Sáb y Dom', label: 'Entrenamientos' },
+];
+
+import WhatsAppIcon from './WhatsAppIcon.astro';
+---
+
+<section class="hero" id="inicio">
+  <!-- Fondo con foto y patrón decorativo -->
+  <div class="hero__bg">
+    <img src="/images/hero.jpg" alt="" class="hero__photo" aria-hidden="true" />
+    <div class="hero__overlay"></div>
+    <div class="hero__shape hero__shape--1"></div>
+    <div class="hero__shape hero__shape--2"></div>
+    <div class="hero__volleyball">🏐</div>
+  </div>
+
+  <div class="container hero__content">
+    <div class="hero__text reveal">
+      <span class="badge">🏆 Quito · Ecuador</span>
+      <h1 class="hero__title">
+        Más que voleibol,<br/>
+        <span class="hero__title-accent">formamos campeones</span>
+      </h1>
+      <p class="hero__description">
+        Somos <strong>Pegasos Volleyball UIO</strong>, la escuela de voleibol para niños y
+        jóvenes de <strong>8 a 17 años</strong> en Quito. Disciplina, trabajo en equipo y
+        pasión por el deporte — mucho más que una idea de negocio.
+      </p>
+      <div class="hero__actions">
+        <a
+          href="https://wa.me/593984917908"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >
+          <WhatsAppIcon size={18} />
+          Inscríbete ahora
+        </a>
+        <a href="#programas" class="btn btn-outline">Ver programas ↓</a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="hero__stats reveal">
+      {stats.map(stat => (
+        <div class="hero__stat">
+          <span class="hero__stat-value">{stat.value}</span>
+          <span class="hero__stat-label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Ola decorativa inferior -->
+  <div class="hero__wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--color-bg)" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(
+      135deg,
+      var(--color-dark) 0%,
+      var(--color-dark-2) 50%,
+      #12455c 100%
+    );
+    overflow: hidden;
+    padding-top: 72px; /* offset navbar */
+  }
+
+  /* Foto de fondo */
+  .hero__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(11, 46, 61, 0.88) 0%,
+      rgba(11, 46, 61, 0.72) 50%,
+      rgba(18, 69, 92, 0.82) 100%
+    );
+  }
+
+  /* Fondo decorativo */
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero__shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.07;
+  }
+
+  .hero__shape--1 {
+    width: 600px;
+    height: 600px;
+    background: var(--color-primary);
+    top: -150px;
+    right: -150px;
+  }
+
+  .hero__shape--2 {
+    width: 400px;
+    height: 400px;
+    background: var(--color-secondary);
+    bottom: -100px;
+    left: -100px;
+  }
+
+  .hero__volleyball {
+    position: absolute;
+    font-size: 20rem;
+    opacity: 0.04;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(-50%) rotate(0deg); }
+    50%       { transform: translateY(-54%) rotate(12deg); }
+  }
+
+  /* Contenido */
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    padding-block: 5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .hero__text {
+    max-width: 680px;
+  }
+
+  .hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--color-white);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__title-accent {
+    color: var(--color-secondary);
+  }
+
+  .hero__description {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: rgba(255,255,255,0.82);
+    max-width: 560px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .hero__description strong {
+    color: var(--color-primary-light);
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Stats */
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    max-width: 600px;
+    transition-delay: 0.2s;
+  }
+
+  .hero__stat {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-md);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    transition: var(--transition);
+  }
+
+  .hero__stat:hover {
+    background: rgba(255,255,255,0.14);
+    transform: translateY(-3px);
+  }
+
+  .hero__stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--color-secondary);
+    line-height: 1;
+  }
+
+  .hero__stat-label {
+    display: block;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 0.35rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* Ola */
+  .hero__wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+  }
+
+  .hero__wave svg {
+    width: 100%;
+    height: 80px;
+  }
+
+  @media (max-width: 600px) {
+    .hero__volleyball {
+      font-size: 12rem;
+      opacity: 0.035;
+    }
+  }
+</style>

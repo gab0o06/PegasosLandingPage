@@ -1,0 +1,38 @@
+---
+// src/layouts/Layout.astro
+// Layout base del sitio. Edita las meta-etiquetas aquí.
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Club Pegasos Volleyball UIO — Escuela Permanente de Voleibol en Quito',
+  description = 'Club Pegasos Volleyball UIO: Escuela Permanente de Voleibol para niños y jóvenes de 8 a 17 años en Quito, Ecuador. Entrenamientos continuos, técnica formativa y valores en Canchas de la Luz.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Pegasos Volleyball UIO" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/og-image.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

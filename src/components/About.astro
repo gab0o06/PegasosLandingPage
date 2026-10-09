@@ -1,0 +1,165 @@
+---
+// src/components/About.astro
+// Sección "Nosotros". Edita los valores y la descripción.
+
+const values = [
+  { icon: '🎯', title: 'Disciplina',        desc: 'Formamos hábitos de esfuerzo constante y compromiso que van más allá de la cancha.' },
+  { icon: '🤝', title: 'Trabajo en equipo', desc: 'El voleibol es colectivo. Aprendemos que los logros se construyen juntos.' },
+  { icon: '❤️', title: 'Pasión',            desc: 'Transmitimos el amor por el deporte como motor de vida y desarrollo personal.' },
+  { icon: '🌱', title: 'Comunidad',          desc: 'Somos mucho más que un club: generamos lazos, identidad y sentido de pertenencia.' },
+];
+---
+
+<section class="about" id="nosotros">
+  <div class="container">
+
+    <div class="about__header reveal">
+      <span class="badge">Quiénes somos</span>
+      <h2 class="section-title">Un proyecto que<br/><em>transforma vidas</em></h2>
+      <p class="section-subtitle">
+        Pegasos Volleyball UIO nació con la convicción de que el deporte es la mejor
+        herramienta para formar personas íntegras. Utilizamos el voleibol como vehículo
+        para enseñar valores, crear comunidad y descubrir talentos.
+      </p>
+    </div>
+
+    <!-- Descripción extendida -->
+    <div class="about__body reveal">
+      <img
+        src="/images/about.jpg"
+        alt="Jugador de Club Pegasos Volleyball con camiseta oficial"
+        class="about__img"
+        loading="lazy"
+      />
+
+      <div class="about__description">
+        <p>
+          Con sede en <strong>Canchas de la Luz</strong>, Quito,
+          el Club Pegasos atiende a niños y jóvenes de <strong>8 a 17 años</strong> con
+          su <strong>Escuela Permanente</strong> durante todo el año, con entrenamientos
+          activos los fines de semana (sábados y domingos).
+        </p>
+        <p>
+          Nuestro equipo de entrenadores guía a cada jugador con metodología progresiva:
+          desde las bases técnicas del voleibol hasta el desarrollo táctico y la
+          competencia. Los cupos son <strong>limitados</strong> para garantizar atención
+          personalizada.
+        </p>
+        <a href="#contacto" class="btn btn-primary">Conoce más → Contáctanos</a>
+      </div>
+    </div>
+
+    <!-- Valores -->
+    <div class="about__values">
+      {values.map((v, i) => (
+        <div class={`about__value-card reveal`} style={`transition-delay:${i * 0.1}s`}>
+          <span class="about__value-icon">{v.icon}</span>
+          <h3 class="about__value-title">{v.title}</h3>
+          <p class="about__value-desc">{v.desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: var(--section-padding);
+    background: var(--color-bg);
+  }
+
+  .about__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .about__header em {
+    color: var(--color-primary);
+    font-style: normal;
+  }
+
+  .about__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  /* Foto de la sección */
+  .about__img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .about__description {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about__description p {
+    color: var(--color-gray);
+    line-height: 1.75;
+  }
+
+  .about__description strong {
+    color: var(--color-dark);
+    font-weight: 600;
+  }
+
+  /* Values grid */
+  .about__values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .about__value-card {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 1.5rem;
+    transition: var(--transition);
+  }
+
+  .about__value-card:hover {
+    border-color: var(--color-primary-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+
+  .about__value-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .about__value-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .about__value-desc {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .about__body {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

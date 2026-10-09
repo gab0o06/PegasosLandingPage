@@ -1,0 +1,261 @@
+---
+// src/components/Footer.astro
+// Pie de página. Edita el año y los links si es necesario.
+
+const currentYear = new Date().getFullYear();
+
+import WhatsAppIcon from './WhatsAppIcon.astro';
+
+const socialLinks = [
+  { label: 'Facebook',  url: 'https://www.facebook.com/search/top?q=Club%20Pegasos%20Volleyball%20UIO', emoji: '📘' },
+  { label: 'Instagram', url: 'https://www.instagram.com/', emoji: '📸' },
+  { label: 'YouTube',   url: 'https://www.youtube.com/', emoji: '▶️' },
+  { label: 'WhatsApp',  url: 'https://wa.me/593984917908', emoji: '📲' },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+
+      <!-- Brand -->
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <div class="footer__logo-badge">
+            <img src="/images/logo-round.png" alt="Logo Pegasos Volleyball" width="44" height="44" />
+          </div>
+          <div>
+            <strong>Pegasos Volleyball UIO</strong>
+            <small>Quito · Ecuador</small>
+          </div>
+        </div>
+        <p class="footer__tagline">
+          "Mucho más que una idea de negocio"
+        </p>
+        <p class="footer__desc">
+          Escuela y club de voleibol para niños y jóvenes de 8 a 17 años
+          en Canchas de la Luz, Quito.
+        </p>
+      </div>
+
+      <!-- Links rápidos -->
+      <div class="footer__links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#permanente">Escuela Permanente</a></li>
+          <li><a href="#programas">Programas</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto rápido -->
+      <div class="footer__contact">
+        <h4>Contacto</h4>
+        <ul>
+          <li>
+            <a href="https://wa.me/593984917908" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;">
+              <WhatsAppIcon size={16} /> WhatsApp: 0984917908
+            </a>
+          </li>
+          <li>📍 Canchas de la Luz, Quito</li>
+          <li>⏰ Sáb y Dom 10:00–12:30</li>
+          <li>👥 Niños y jóvenes 8–17 años</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="footer__social">
+      {socialLinks.map(s => (
+        <a href={s.url} target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label={s.label}>
+          {s.label === 'WhatsApp' ? (
+            <WhatsAppIcon size={16} />
+          ) : (
+            <span>{s.emoji}</span>
+          )}
+          <span>{s.label}</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer__bottom">
+      <p>© {currentYear} Pegasos Volleyball UIO. Quito, Ecuador.</p>
+      <p>Hecho con ❤️ para el deporte.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-dark);
+    color: rgba(255,255,255,0.8);
+    padding: 4rem 1.5rem 0;
+  }
+
+  .footer__top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Brand */
+  .footer__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer__logo-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .footer__logo-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .footer__logo strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--color-white);
+  }
+
+  .footer__logo small {
+    font-size: 0.72rem;
+    color: var(--color-primary-light);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .footer__tagline {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__desc {
+    font-size: 0.87rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* Links */
+  .footer__links h4,
+  .footer__contact h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary-light);
+    margin-bottom: 1rem;
+  }
+
+  .footer__links ul,
+  .footer__contact ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .footer__links a,
+  .footer__contact a {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+
+  .footer__links a:hover,
+  .footer__contact a:hover {
+    color: var(--color-secondary);
+  }
+
+  .footer__contact li {
+    font-size: 0.87rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+
+  /* Social */
+  .footer__social {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    justify-content: center;
+  }
+
+  .footer__social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    transition: var(--transition);
+    font-family: var(--font-heading);
+  }
+
+  .footer__social-link:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+  }
+
+  /* Bottom */
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__bottom p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 768px) {
+    .footer__top {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer__bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

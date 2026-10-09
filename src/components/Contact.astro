@@ -1,0 +1,197 @@
+---
+// src/components/Contact.astro
+// Sección de contacto. Edita los datos de contacto y ubicación.
+
+import WhatsAppIcon from './WhatsAppIcon.astro';
+
+const contactInfo = [
+  { icon: '📲', label: 'WhatsApp',  value: '0984917908',          link: 'https://wa.me/593984917908' },
+  { icon: '📍', label: 'Ubicación', value: 'Canchas de la Luz, Quito', link: 'https://maps.app.goo.gl/kVhMB9aU66foGMFR7' },
+  { icon: '📘', label: 'Facebook',  value: 'Club Pegasos Volleyball UIO', link: 'https://www.facebook.com/search/top?q=Club%20Pegasos%20Volleyball%20UIO' },
+];
+---
+
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact__header reveal">
+      <span class="badge">Contáctanos</span>
+      <h2 class="section-title">¿Listo para unirte<br/><span>a los Pegasos?</span></h2>
+      <p class="section-subtitle">
+        Escríbenos por WhatsApp para consultar cupos, horarios y precios.
+        Respondemos rápido.
+      </p>
+    </div>
+
+    <div class="contact__grid">
+
+      <!-- Info de contacto -->
+      <div class="contact__info reveal">
+        <h3 class="contact__info-title">Información de contacto</h3>
+        <ul class="contact__list">
+          {contactInfo.map(item => (
+            <li class="contact__item">
+              <span class="contact__item-icon">{item.icon}</span>
+              <div>
+                <span class="contact__item-label">{item.label}</span>
+                <a href={item.link} target="_blank" rel="noopener noreferrer" class="contact__item-value">
+                  {item.value}
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div class="contact__whatsapp-big">
+          <a
+            href="https://wa.me/593984917908?text=Hola!%20Quiero%20información%20sobre%20los%20entrenamientos%20de%20Pegasos%20Volleyball%20UIO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+            style="font-size: 1rem; padding: 1rem 2rem;"
+          >
+            <WhatsAppIcon size={20} />
+            Escribirnos por WhatsApp
+          </a>
+          <p style="font-size: 0.8rem; color: var(--color-gray); margin-top: 0.5rem;">
+            Pregunta por módulos disponibles, horarios y cupos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Mapa embed -->
+      <div class="contact__map reveal" style="transition-delay: 0.2s;">
+        <div class="contact__map-wrap">
+          <iframe
+            title="Ubicación Club Pegasos Volleyball UIO - Canchas de la Luz, Quito"
+            src="https://www.google.com/maps?q=Canchas+de+la+Luz,+Quito,+Ecuador&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <p class="contact__map-caption">
+          📍 Canchas de la Luz, Quito
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: var(--section-padding);
+    background: var(--color-bg-alt);
+  }
+
+  .contact__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .contact__header span {
+    color: var(--color-primary);
+  }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Info */
+  .contact__info-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-primary-light);
+  }
+
+  .contact__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contact__item-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .contact__item-label {
+    display: block;
+    font-size: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-gray);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.1rem;
+  }
+
+  .contact__item-value {
+    display: block;
+    font-weight: 600;
+    color: var(--color-dark);
+    font-size: 0.95rem;
+    transition: var(--transition);
+  }
+
+  .contact__item-value:hover {
+    color: var(--color-primary);
+  }
+
+  .contact__whatsapp-big {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-gray-light);
+  }
+
+  /* Map */
+  .contact__map-wrap {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 320px;
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--color-gray-light);
+  }
+
+  .contact__map-caption {
+    font-size: 0.82rem;
+    color: var(--color-gray);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .contact__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

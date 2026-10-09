@@ -1,0 +1,41 @@
+# Dependencias
+node_modules/
+dist/
+.astro/
+
+# Entornos
+.env
+.env.local
+.env.production
+
+# Editor
+.DS_Store
+*.swp
+.idea/
+.vscode/settings.json
+
+# Logs
+npm-debug.log*
+
+# Las imágenes ORIGINALES en context/ pueden ser grandes — no subir a git
+# Las versiones optimizadas en src/assets/images/ y public/images/ SÍ se suben
+context/logos/*.jpg
+context/logos/*.jpeg
+context/logos/*.png
+context/logos/*.bmp
+context/logos/*.tiff
+context/fotos/*.jpg
+context/fotos/*.jpeg
+context/fotos/*.png
+context/fotos/*.bmp
+context/fotos/*.tiff
+context/referencias/*.jpg
+context/referencias/*.jpeg
+context/referencias/*.png
+context/referencias/*.bmp
+context/referencias/*.tiff
+context/paleta/*.jpg
+context/paleta/*.jpeg
+context/paleta/*.png
+context/paleta/*.bmp
+context/paleta/*.tiff

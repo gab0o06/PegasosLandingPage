@@ -1,0 +1,201 @@
+---
+// src/components/Programs.astro
+// Sección de programas/entrenamientos de la escuela permanente.
+import WhatsAppIcon from './WhatsAppIcon.astro';
+
+const programs = [
+  {
+    icon: '🏋️',
+    tag: 'Permanente',
+    title: 'Entrenamiento Formativo',
+    description:
+      'Clases continuas los fines de semana con metodología formativa y progresiva. Técnica de saque, recepción, colocación, remate y juego en equipo.',
+    details: [
+      '📅 Sábados y Domingos',
+      '⏰ 10:00 – 12:30',
+      '📍 Canchas de la Luz, Quito',
+      '👦 Niños y jóvenes 8–17 años',
+    ],
+    color: 'primary',
+  },
+  {
+    icon: '⚡',
+    tag: 'Especializado',
+    title: 'Tecnificación por Posición',
+    description:
+      'Módulos específicos enfocados en el perfeccionamiento de armadores, atacantes puntas, centrales y líberos para subir de nivel rápidamente.',
+    details: [
+      '🏐 Posiciones y roles tácticos',
+      '🎯 Saque potente, bloqueo y defensa',
+      '📍 Canchas de la Luz, Quito',
+      '💪 Nivel intermedio y avanzado',
+    ],
+    color: 'secondary',
+  },
+  {
+    icon: '🏆',
+    tag: 'Competencia',
+    title: 'Equipo & Fogueo',
+    description:
+      'Sesiones de juego real, desarrollo de táctica en conjunto y preparación para partidos amistosos y torneos juveniles en Quito.',
+    details: [
+      '📅 Partidos y topes deportivos',
+      '🤝 Táctica de juego 4-2 / 5-1',
+      '📍 Canchas de la Luz, Quito',
+      '⭐ Mentalidad y espíritu de equipo',
+    ],
+    color: 'primary',
+  },
+];
+---
+
+<section class="programs" id="programas">
+  <div class="container">
+    <div class="programs__header reveal">
+      <span class="badge">Nuestros Programas</span>
+      <h2 class="section-title">Formación deportiva para<br/><span>cada etapa</span></h2>
+      <p class="section-subtitle">
+        Diseñados dentro de nuestra escuela permanente para acompañar el crecimiento
+        técnico, físico y mental de cada jugador.
+      </p>
+    </div>
+
+    <div class="programs__grid">
+      {programs.map((p, i) => (
+        <article class={`program-card reveal program-card--${p.color}`} style={`transition-delay:${i * 0.15}s`}>
+          <div class="program-card__icon">{p.icon}</div>
+          <span class="program-card__tag">{p.tag}</span>
+          <h3 class="program-card__title">{p.title}</h3>
+          <p class="program-card__desc">{p.description}</p>
+          <ul class="program-card__details">
+            {p.details.map(d => (
+              <li>{d}</li>
+            ))}
+          </ul>
+          <a
+            href="https://wa.me/593984917908?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20programa%20de%20voleibol"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary program-card__btn"
+          >
+            <WhatsAppIcon size={18} />
+            <span>Inscribirme →</span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .programs {
+    padding: var(--section-padding);
+    background: var(--color-bg-alt);
+  }
+
+  .programs__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .programs__header span {
+    color: var(--color-primary);
+  }
+
+  .programs__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.75rem;
+  }
+
+  /* Card */
+  .program-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+
+  .program-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .program-card--primary:hover {
+    border-color: var(--color-primary);
+  }
+
+  .program-card--secondary:hover {
+    border-color: var(--color-secondary);
+  }
+
+  .program-card__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .program-card__tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    width: fit-content;
+  }
+
+  .program-card--secondary .program-card__tag {
+    color: var(--color-secondary-dark);
+    background: #d1f5e0;
+  }
+
+  .program-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    line-height: 1.25;
+  }
+
+  .program-card__desc {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .program-card__details {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    border-top: 1px solid var(--color-gray-light);
+    padding-top: 1rem;
+  }
+
+  .program-card__details li {
+    font-size: 0.88rem;
+    color: var(--color-dark);
+    font-weight: 500;
+  }
+
+  .program-card__btn {
+    margin-top: 0.5rem;
+    text-align: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+</style>
