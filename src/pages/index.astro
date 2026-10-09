@@ -1,12 +1,10 @@
 ---
-// src/pages/index.astro
-// Requisitos: proyecto Astro con Tailwind CSS (ver instrucciones al final del chat)
-// y un archivo src/styles/global.css con:  @import "tailwindcss";
+// src/pages/index.astro — Pegasos Volleyball UIO (Opción 4: Elite Modern Pro / Dark Glass Athletic)
 import "../styles/global.css";
 
-// ───────── CONFIGURACIÓN ─────────
-// Cambia este número por el WhatsApp real del club (código de país + número, sin + ni espacios).
-const WHATSAPP_NUMBER = "593999999999";
+// ───────── CONFIGURACIÓN OFICIAL ─────────
+// Número oficial de WhatsApp del club (Quito, Ecuador)
+const WHATSAPP_NUMBER = "593984917908";
 
 const wa = (text: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -14,433 +12,957 @@ const wa = (text: string) =>
 const WA_GENERAL = wa("¡Hola Pegasos! 🏐 Quiero agendar mi clase de prueba GRATIS.");
 const WA_FORMATIVA = wa("¡Hola Pegasos! 🏐 Quiero información de la categoría Formativa (8-17 años) y agendar la clase de prueba GRATIS.");
 const WA_ABSOLUTO = wa("¡Hola Pegasos! 🏐 Quiero información del Equipo Absoluto Masculino y agendar la clase de prueba GRATIS.");
+const WA_PERMANENTE = wa("¡Hola Pegasos! 🏐 Quisiera consultar detalles y cupos de la Escuela Permanente.");
 
-const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Sede+La+Luz+N88+202+Quito";
-
+const MAPS_URL = "https://maps.app.goo.gl/kVhMB9aU66foGMFR7";
 const year = new Date().getFullYear();
+
+// Fotos reales del club
+const galeriaFotos = [
+  {
+    src: "/images/equipo.jpg",
+    alt: "Equipo Pegasos Volleyball en reunión técnica",
+    tag: "Comunidad & Unión",
+    title: "La Manada Pegasos",
+  },
+  {
+    src: "/images/entrenamiento.jpg",
+    alt: "Entrenamiento formativo en Canchas de la Luz",
+    tag: "Técnica & Práctica",
+    title: "Entrenamiento en Cancha",
+  },
+  {
+    src: "/images/accion.jpg",
+    alt: "Jugadora rematando sobre la red",
+    tag: "Intensidad",
+    title: "Ataque y Potencia",
+  },
+  {
+    src: "/images/about.jpg",
+    alt: "Jugador de Pegasos con uniforme oficial",
+    tag: "Identidad",
+    title: "Orgullo Pegasos",
+  },
+];
+
+// Valores del club
+const valores = [
+  {
+    icon: "🎯",
+    title: "Técnica & Disciplina",
+    desc: "Metodología progresiva paso a paso para dominar voleo, saque, recepción y remate con base sólida.",
+    color: "from-cyan-500/20 to-blue-500/5",
+    border: "group-hover:border-cyan-400/50",
+    glow: "group-hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]",
+  },
+  {
+    icon: "🤝",
+    title: "Comunidad & Hermandad",
+    desc: "En Pegasos nadie juega solo. Fomentamos el compañerismo, respeto y apoyo mutuo dentro y fuera de la cancha.",
+    color: "from-emerald-500/20 to-teal-500/5",
+    border: "group-hover:border-emerald-400/50",
+    glow: "group-hover:shadow-[0_0_30px_rgba(16,185,129,0.25)]",
+  },
+  {
+    icon: "⚡",
+    title: "Mentalidad Competitiva",
+    desc: "Partidos de fogueo, torneos y situaciones de juego real para forjar carácter, temple y resiliencia.",
+    color: "from-amber-500/20 to-orange-500/5",
+    border: "group-hover:border-amber-400/50",
+    glow: "group-hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]",
+  },
+  {
+    icon: "🌱",
+    title: "Valores para la Vida",
+    desc: "El deporte como herramienta para formar hábitos positivos, compromiso y superación personal permanente.",
+    color: "from-teal-500/20 to-cyan-500/5",
+    border: "group-hover:border-teal-400/50",
+    glow: "group-hover:shadow-[0_0_30px_rgba(20,184,166,0.25)]",
+  },
+];
+
+// Preguntas frecuentes
+const faqs = [
+  {
+    q: "¿Mi hijo/a nunca ha practicado voleibol, puede unirse?",
+    a: "¡Totalmente! En la categoría Formativa enseñamos la técnica desde cero con metodología progresiva y adecuada a su ritmo.",
+  },
+  {
+    q: "¿Cómo funciona la clase de prueba GRATIS?",
+    a: "Solo debes hacer clic en cualquiera de nuestros botones de WhatsApp, coordinamos el día que prefieras (sábado o domingo) y asistes sin ningún costo ni compromiso previo.",
+  },
+  {
+    q: "¿Qué días y en qué horarios entrenan?",
+    a: "Entrenamos los fines de semana: sábados y domingos de 10:00 a 12:30 en Canchas de La Luz, Quito.",
+  },
+  {
+    q: "¿Qué implementos se necesitan para la primera clase?",
+    a: "Únicamente ropa deportiva cómoda, zapatillas deportivas con buen agarre y tu botella de agua para hidratación. Nosotros proveemos balones e infraestructura.",
+  },
+];
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Club Pegasos Volleyball | Voleo de Campeones · Quito</title>
     <meta
       name="description"
-      content="Club de voleibol en Quito. Categoría Formativa (8-17 años) y Equipo Absoluto Masculino. Agenda tu clase de prueba GRATIS por WhatsApp."
+      content="Club Pegasos Volleyball en Quito. Escuela formativa (8 a 17 años) y Equipo Absoluto Masculino. Entrena en Canchas de La Luz. ¡Agenda tu clase de prueba GRATIS!"
     />
-    <meta name="theme-color" content="#050B1A" />
+    <meta name="theme-color" content="#070D18" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/logo-badge.png" />
+
+    <!-- Google Fonts: Outfit (Titulares atléticos modernos) + Plus Jakarta Sans (Lectura pulida) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Barlow:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
 
-  <body class="bg-[#050B1A] font-body text-slate-200 antialiased selection:bg-[#4DFF9A] selection:text-[#050B1A]">
-    <!-- ═════════════ HERO ═════════════ -->
-    <header class="relative isolate overflow-hidden">
-      <!-- Resplandores de fondo -->
-      <div class="pointer-events-none absolute -left-40 -top-40 h-[28rem] w-[28rem] rounded-full bg-teal-500/20 blur-[120px]"></div>
-      <div class="pointer-events-none absolute -bottom-40 right-0 h-[26rem] w-[26rem] rounded-full bg-[#4DFF9A]/10 blur-[120px]"></div>
-
-      <!-- Líneas de cancha de voleibol (vista cenital) -->
-      <svg
-        class="court pointer-events-none absolute -right-24 top-1/2 -z-10 w-[56rem] max-w-none -translate-y-1/2 text-teal-400/25"
-        viewBox="0 0 600 340"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="3"
-        aria-hidden="true"
-      >
-        <rect x="10" y="10" width="580" height="320" />
-        <line x1="300" y1="10" x2="300" y2="330" stroke-width="6" />
-        <line x1="200" y1="10" x2="200" y2="330" />
-        <line x1="400" y1="10" x2="400" y2="330" />
-        <circle cx="300" cy="170" r="46" />
-      </svg>
-
-      <!-- Barra superior -->
-      <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
-        <a href="#top" class="font-display text-2xl font-black italic uppercase tracking-wide text-white md:text-3xl" id="top">
-          Pegasos<span class="text-[#4DFF9A]"> Volleyball</span>
+  <body class="bg-[#060B14] font-['Plus_Jakarta_Sans',sans-serif] text-slate-200 antialiased selection:bg-cyan-400 selection:text-slate-950">
+    <!-- ═════════════ BARRA DE ANUNCIO SUPERIOR ═════════════ -->
+    <div class="relative z-50 bg-gradient-to-r from-cyan-950 via-slate-900 to-emerald-950 border-b border-cyan-500/20 py-2.5 px-4 text-center text-xs sm:text-sm font-medium text-slate-300">
+      <div class="mx-auto flex max-w-7xl items-center justify-center gap-2 flex-wrap">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-xs font-semibold text-emerald-400 border border-emerald-500/30">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          INSCRIPCIONES ABIERTAS {year}
+        </span>
+        <span>Entrena en Canchas de la Luz · Sábados y Domingos 10:00 - 12:30</span>
+        <a href={WA_GENERAL} target="_blank" rel="noopener noreferrer" class="text-cyan-400 font-semibold hover:text-cyan-300 underline underline-offset-2 ml-1">
+          Primera clase de prueba GRATIS →
         </a>
-        <a
-          href={WA_GENERAL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hidden rounded-sm border border-teal-400/60 px-5 py-2 text-sm font-semibold uppercase tracking-widest text-teal-300 transition hover:border-[#4DFF9A] hover:bg-[#4DFF9A] hover:text-[#050B1A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#4DFF9A] md:inline-block"
-        >
-          Escríbenos
+      </div>
+    </div>
+
+    <!-- ═════════════ FLOATING GLASS NAVBAR ═════════════ -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#060B14]/85 border-b border-white/[0.08] transition-all duration-300">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3.5">
+        <!-- Logo y Marca -->
+        <a href="#top" class="flex items-center gap-3 group">
+          <div class="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-cyan-500/20 to-emerald-500/10 p-1 border border-cyan-500/30 transition group-hover:scale-105 group-hover:border-cyan-400/60 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+            <img src="/images/logo-transparent.png" alt="Logo Pegasos Volleyball" class="h-full w-full object-contain" />
+          </div>
+          <div>
+            <span class="block font-['Outfit',sans-serif] text-xl font-black uppercase tracking-wider text-white group-hover:text-cyan-400 transition-colors">
+              Pegasos <span class="text-cyan-400 group-hover:text-emerald-400 transition-colors">Volleyball</span>
+            </span>
+            <span class="block text-[10px] font-semibold tracking-widest uppercase text-slate-400">
+              Quito · Ecuador
+            </span>
+          </div>
         </a>
-      </nav>
 
-      <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 md:pb-36 md:pt-20">
-        <p class="rise mb-6 inline-block border-l-4 border-[#4DFF9A] pl-3 text-sm font-semibold uppercase tracking-[0.25em] text-teal-300" style="--d:0ms">
-          Club de voleibol · Quito
-        </p>
+        <!-- Menú Desktop -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-semibold tracking-wide text-slate-300">
+          <a href="#categorias" class="transition hover:text-cyan-400 hover:-translate-y-0.5">Categorías</a>
+          <a href="#permanente" class="transition hover:text-cyan-400 hover:-translate-y-0.5">Escuela Permanente</a>
+          <a href="#valores" class="transition hover:text-cyan-400 hover:-translate-y-0.5">Valores</a>
+          <a href="#galeria" class="transition hover:text-cyan-400 hover:-translate-y-0.5">Galería</a>
+          <a href="#sede" class="transition hover:text-cyan-400 hover:-translate-y-0.5">Sede & Horarios</a>
+          <a href="#faqs" class="transition hover:text-cyan-400 hover:-translate-y-0.5">Preguntas</a>
+        </nav>
 
-        <h1 class="font-display font-black italic uppercase leading-[0.85] tracking-tight text-white">
-          <span class="rise block text-[5rem] sm:text-[8rem] lg:text-[11rem]" style="--d:120ms">Voleo de</span>
-          <span class="rise outline-text block text-[4.2rem] sm:text-[7rem] lg:text-[10rem]" style="--d:260ms">Campeones</span>
-        </h1>
-
-        <p class="rise mt-8 max-w-xl text-lg leading-relaxed text-slate-300 md:text-xl" style="--d:420ms">
-          A través del voleibol formamos jugadores, creamos comunidad y transmitimos valores que inspiran.
-        </p>
-
-        <div class="rise mt-10" style="--d:560ms">
+        <!-- CTA WhatsApp Navbar -->
+        <div class="flex items-center gap-3">
           <a
             href={WA_GENERAL}
             target="_blank"
             rel="noopener noreferrer"
-            class="skew-btn shine glow-pulse group inline-flex items-center gap-4 bg-[#4DFF9A] px-8 py-6 text-[#050B1A] shadow-[0_0_40px_rgba(77,255,154,0.55)] hover:shadow-[0_0_80px_rgba(77,255,154,0.9)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-white sm:px-12 sm:py-7"
+            class="hidden sm:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 px-5 py-2.5 text-xs md:text-sm font-extrabold uppercase tracking-wider text-slate-950 transition hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 active:scale-95"
           >
-            <span class="unskew inline-flex items-center gap-4">
-              <svg class="h-8 w-8 shrink-0 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-              </svg>
-              <span class="font-display text-3xl font-black italic uppercase leading-none tracking-wide sm:text-5xl">
-                💥 Clase de prueba GRATIS
-              </span>
-            </span>
+            <span>Clase Gratis</span>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
           </a>
-          <p class="mt-5 text-sm text-slate-400">
-            Escríbenos por WhatsApp y agenda tu primera clase. Sin compromiso.
-          </p>
+
+          <!-- Botón móvil toggle -->
+          <button
+            id="mobileMenuBtn"
+            type="button"
+            class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-300 hover:text-white"
+            aria-label="Abrir menú"
+          >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
         </div>
+      </div>
+
+      <!-- Menú desplegable móvil -->
+      <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[#060B14]/98 px-6 py-5 backdrop-blur-2xl">
+        <nav class="flex flex-col gap-4 text-base font-semibold text-slate-200">
+          <a href="#categorias" class="mobile-nav-link py-1 hover:text-cyan-400">Categorías</a>
+          <a href="#permanente" class="mobile-nav-link py-1 hover:text-cyan-400">Escuela Permanente</a>
+          <a href="#valores" class="mobile-nav-link py-1 hover:text-cyan-400">Valores</a>
+          <a href="#galeria" class="mobile-nav-link py-1 hover:text-cyan-400">Galería</a>
+          <a href="#sede" class="mobile-nav-link py-1 hover:text-cyan-400">Sede & Horarios</a>
+          <a href="#faqs" class="mobile-nav-link py-1 hover:text-cyan-400">Preguntas Frecuentes</a>
+          <a
+            href={WA_GENERAL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 px-5 py-3 text-center font-extrabold uppercase text-slate-950"
+          >
+            Agendar Clase de Prueba Gratis
+          </a>
+        </nav>
       </div>
     </header>
 
-    <!-- ═════════════ CATEGORÍAS ═════════════ -->
-    <section class="relative bg-[#030712]" aria-labelledby="categorias">
-      <div class="mx-auto max-w-7xl px-6 pb-10 pt-20 md:pt-28">
-        <h2 id="categorias" class="font-display text-5xl font-black italic uppercase tracking-wide text-white md:text-7xl">
-          Únete a la manada
-        </h2>
-        <p class="mt-4 max-w-xl text-lg text-slate-400">
-          Dos categorías, una misma exigencia. Elige dónde vas a competir.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2">
-        <!-- FORMATIVA -->
-        <article class="panel-left relative flex min-h-[32rem] flex-col justify-between overflow-hidden bg-teal-500 p-8 text-[#04121F] md:p-14 md:pr-24">
-          <span class="pointer-events-none absolute -right-6 -top-10 select-none font-display text-[16rem] font-black italic leading-none text-[#04121F]/10 md:text-[22rem]" aria-hidden="true">
-            8-17
-          </span>
-
-          <div class="relative">
-            <h3 class="font-display text-6xl font-black italic uppercase leading-[0.9] tracking-tight md:text-8xl">
-              Formativa
-            </h3>
-            <p class="mt-3 inline-block bg-[#04121F] px-3 py-1 font-display text-2xl font-bold italic uppercase tracking-wide text-[#4DFF9A]">
-              8 a 17 años
-            </p>
-            <p class="mt-6 max-w-md text-lg font-medium leading-relaxed">
-              Aprende los fundamentos del voleibol desde cero o sube de nivel. Técnica, juego en equipo y confianza en cada entrenamiento.
-            </p>
-            <ul class="mt-6 space-y-2 font-semibold">
-              <li class="flex items-center gap-3"><span class="h-2 w-6 -skew-x-[20deg] bg-[#04121F]"></span>Fundamentos y técnica</li>
-              <li class="flex items-center gap-3"><span class="h-2 w-6 -skew-x-[20deg] bg-[#04121F]"></span>Grupos por edad y nivel</li>
-              <li class="flex items-center gap-3"><span class="h-2 w-6 -skew-x-[20deg] bg-[#04121F]"></span>Primeros pasos en competencia</li>
-            </ul>
-          </div>
-
-          <a
-            href={WA_FORMATIVA}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative mt-10 inline-flex w-fit items-center gap-3 bg-[#04121F] px-7 py-4 font-display text-xl font-black italic uppercase tracking-wide text-white transition hover:-translate-y-1 hover:bg-white hover:text-[#04121F] hover:shadow-[0_12px_30px_rgba(4,18,31,0.5)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-white"
-          >
-            Quiero entrar a Formativa
-          </a>
-        </article>
-
-        <!-- ABSOLUTO -->
-        <article class="panel-right relative flex min-h-[32rem] flex-col justify-between overflow-hidden border-t-4 border-[#4DFF9A] bg-[#07122B] p-8 md:border-l-0 md:border-t-0 md:p-14 md:pl-24">
-          <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(77,255,154,0.18),transparent_55%)]"></div>
-
-          <div class="relative">
-            <h3 class="font-display text-6xl font-black italic uppercase leading-[0.9] tracking-tight text-white md:text-8xl">
-              Equipo<br />Absoluto
-            </h3>
-            <p class="mt-3 inline-block bg-[#4DFF9A] px-3 py-1 font-display text-2xl font-bold italic uppercase tracking-wide text-[#050B1A]">
-              Masculino
-            </p>
-            <p class="mt-6 max-w-md text-lg leading-relaxed text-slate-300">
-              Para jugadores que quieren competir en serio. Entrenamiento exigente, ritmo de partido y mentalidad de campeón.
-            </p>
-            <ul class="mt-6 space-y-2 font-semibold text-white">
-              <li class="flex items-center gap-3"><span class="h-2 w-6 -skew-x-[20deg] bg-[#4DFF9A]"></span>Entrenamiento de alta intensidad</li>
-              <li class="flex items-center gap-3"><span class="h-2 w-6 -skew-x-[20deg] bg-[#4DFF9A]"></span>Táctica y trabajo de equipo</li>
-              <li class="flex items-center gap-3"><span class="h-2 w-6 -skew-x-[20deg] bg-[#4DFF9A]"></span>Enfoque en competencia</li>
-            </ul>
-          </div>
-
-          <a
-            href={WA_ABSOLUTO}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative mt-10 inline-flex w-fit items-center gap-3 border-2 border-[#4DFF9A] px-7 py-4 font-display text-xl font-black italic uppercase tracking-wide text-[#4DFF9A] transition hover:-translate-y-1 hover:bg-[#4DFF9A] hover:text-[#050B1A] hover:shadow-[0_0_35px_rgba(77,255,154,0.6)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-white"
-          >
-            Quiero entrar al Absoluto
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <!-- ═════════════ BENEFICIOS ═════════════ -->
-    <section class="mx-auto max-w-7xl px-6 py-24 md:py-32" aria-labelledby="beneficios">
-      <h2 id="beneficios" class="max-w-3xl font-display text-5xl font-black italic uppercase leading-[0.95] tracking-wide text-white md:text-7xl">
-        Más que un deporte: un club que te forma
-      </h2>
-
-      <div class="mt-14 grid gap-px bg-teal-400/20 md:grid-cols-3">
-        <!-- Formación -->
-        <div class="group bg-[#050B1A] p-8 transition hover:bg-[#08142E] md:p-10">
-          <div class="flex h-16 w-16 items-center justify-center bg-teal-500/15 text-teal-300 ring-1 ring-teal-400/40 transition group-hover:bg-teal-400 group-hover:text-[#050B1A] group-hover:shadow-[0_0_30px_rgba(45,212,191,0.7)]">
-            <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="6" />
-              <circle cx="12" cy="12" r="2" />
-            </svg>
-          </div>
-          <h3 class="mt-6 font-display text-4xl font-black italic uppercase tracking-wide text-white">Formación</h3>
-          <p class="mt-3 leading-relaxed text-slate-400">
-            Técnica, táctica y condición física con un entrenamiento progresivo que te hace mejorar clase tras clase.
-          </p>
+    <main id="top">
+      <!-- ═════════════ HERO SECTION (PRO ATHLETIC GLASS) ═════════════ -->
+      <section class="relative isolate min-h-[90vh] overflow-hidden pt-8 pb-20 md:pt-16 md:pb-32 flex items-center">
+        <!-- Foto de fondo del club con opacidad y blending cinematográfico -->
+        <div class="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+          <img
+            src="/images/hero.jpg"
+            alt="Fondo Pegasos Volleyball"
+            class="h-full w-full object-cover object-center opacity-25 scale-105 filter blur-[2px]"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/85 to-[#060B14]/70"></div>
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(6,182,212,0.25),transparent_75%)]"></div>
+          <div class="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-emerald-500/10 blur-[130px]"></div>
         </div>
 
-        <!-- Comunidad -->
-        <div class="group bg-[#050B1A] p-8 transition hover:bg-[#08142E] md:p-10">
-          <div class="flex h-16 w-16 items-center justify-center bg-teal-500/15 text-teal-300 ring-1 ring-teal-400/40 transition group-hover:bg-teal-400 group-hover:text-[#050B1A] group-hover:shadow-[0_0_30px_rgba(45,212,191,0.7)]">
-            <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </div>
-          <h3 class="mt-6 font-display text-4xl font-black italic uppercase tracking-wide text-white">Comunidad</h3>
-          <p class="mt-3 leading-relaxed text-slate-400">
-            Se entrena en grupo, se celebra en grupo. Aquí encuentras compañeros, amigos y una manada que te respalda.
-          </p>
-        </div>
-
-        <!-- Valores -->
-        <div class="group bg-[#050B1A] p-8 transition hover:bg-[#08142E] md:p-10">
-          <div class="flex h-16 w-16 items-center justify-center bg-teal-500/15 text-teal-300 ring-1 ring-teal-400/40 transition group-hover:bg-teal-400 group-hover:text-[#050B1A] group-hover:shadow-[0_0_30px_rgba(45,212,191,0.7)]">
-            <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-              <path d="m9 12 2 2 4-4" />
-            </svg>
-          </div>
-          <h3 class="mt-6 font-display text-4xl font-black italic uppercase tracking-wide text-white">Valores</h3>
-          <p class="mt-3 leading-relaxed text-slate-400">
-            Disciplina, respeto y trabajo en equipo, dentro y fuera de la cancha. Valores que inspiran.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═════════════ CTA FINAL + UBICACIÓN ═════════════ -->
-    <section class="cta-band relative isolate overflow-hidden" aria-labelledby="cta-final">
-      <svg
-        class="pointer-events-none absolute -left-20 top-1/2 -z-10 w-[50rem] max-w-none -translate-y-1/2 text-[#050B1A]/15"
-        viewBox="0 0 600 340"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="4"
-        aria-hidden="true"
-      >
-        <rect x="10" y="10" width="580" height="320" />
-        <line x1="300" y1="10" x2="300" y2="330" stroke-width="8" />
-        <line x1="200" y1="10" x2="200" y2="330" />
-        <line x1="400" y1="10" x2="400" y2="330" />
-      </svg>
-
-      <div class="mx-auto flex max-w-7xl flex-col items-start gap-10 px-6 py-20 md:flex-row md:items-center md:justify-between md:py-28">
-        <div class="max-w-2xl text-[#050B1A]">
-          <h2 id="cta-final" class="font-display text-6xl font-black italic uppercase leading-[0.9] tracking-tight md:text-8xl">
-            Tu primera clase es gratis
-          </h2>
-          <p class="mt-5 text-lg font-semibold md:text-xl">
-            Escríbenos por WhatsApp, elige tu categoría y ven a probar con el club.
-          </p>
-
-          <a
-            href={MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-8 inline-flex items-start gap-3 bg-[#050B1A] px-5 py-4 text-white transition hover:bg-[#0B1B3F] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#050B1A]"
-          >
-            <svg class="mt-0.5 h-6 w-6 shrink-0 text-[#4DFF9A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>
-              <span class="block font-display text-2xl font-black italic uppercase tracking-wide">Sede La Luz</span>
-              <span class="block text-sm text-slate-300">N88 202, Quito · Ver en el mapa</span>
-            </span>
-          </a>
-        </div>
-
-        <a
-          href={WA_GENERAL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="skew-btn shine group inline-flex shrink-0 items-center bg-[#050B1A] px-10 py-7 text-[#4DFF9A] shadow-[0_18px_0_-6px_rgba(5,11,26,0.35)] hover:bg-white hover:text-[#050B1A] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#050B1A]"
+        <!-- Líneas estilizadas de cancha de voleibol (SVG) -->
+        <svg
+          class="pointer-events-none absolute right-0 top-1/2 -z-10 h-[38rem] w-[50rem] -translate-y-1/2 translate-x-1/4 stroke-cyan-500/15 opacity-80"
+          viewBox="0 0 600 340"
+          fill="none"
+          stroke-width="2.5"
+          aria-hidden="true"
         >
-          <span class="unskew inline-flex items-center gap-3">
-            <svg class="h-8 w-8 transition-transform duration-300 group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-            </svg>
-            <span class="font-display text-3xl font-black italic uppercase tracking-wide sm:text-4xl">Escribir por WhatsApp</span>
-          </span>
-        </a>
-      </div>
-    </section>
+          <rect x="10" y="10" width="580" height="320" rx="8" />
+          <line x1="300" y1="10" x2="300" y2="330" stroke-width="5" stroke-dasharray="8 6" />
+          <line x1="200" y1="10" x2="200" y2="330" />
+          <line x1="400" y1="10" x2="400" y2="330" />
+          <circle cx="300" cy="170" r="50" />
+        </svg>
 
-    <!-- ═════════════ FOOTER ═════════════ -->
-    <footer class="bg-[#030712] px-6 pb-28 pt-10 md:pb-10">
-      <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 text-sm text-slate-500 md:flex-row md:items-center">
-        <p class="font-display text-xl font-black italic uppercase tracking-wide text-slate-300">
-          Club Pegasos Volleyball · Voleo de Campeones
-        </p>
-        <p>© {year} Club Pegasos Volleyball. Quito, Ecuador.</p>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 w-full">
+          <div class="max-w-4xl">
+            <!-- Badge superior con pulso -->
+            <div class="inline-flex items-center gap-2.5 rounded-full border border-cyan-400/40 bg-cyan-950/40 px-4 py-1.5 backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(6,182,212,0.25)]">
+              <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
+              <span class="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-cyan-300">
+                Club Pegasos Volleyball · Quito, Ecuador
+              </span>
+            </div>
+
+            <!-- Gran Título Impactante -->
+            <h1 class="font-['Outfit',sans-serif] text-5xl sm:text-7xl lg:text-9xl font-black uppercase tracking-tight leading-[0.9] text-white">
+              Voleo de
+              <span class="block bg-gradient-to-r from-cyan-300 via-teal-200 to-emerald-400 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(6,182,212,0.4)]">
+                Campeones
+              </span>
+            </h1>
+
+            <p class="mt-6 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-300 font-normal">
+              Mucho más que una escuela de voleibol: formamos atletas íntegros, creamos una verdadera comunidad y transmitimos valores que inspiran en cada entrenamiento.
+            </p>
+
+            <!-- Acciones CTA principales -->
+            <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <a
+                href={WA_GENERAL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 px-8 py-5 text-base sm:text-lg font-black uppercase tracking-wide text-slate-950 shadow-[0_0_35px_rgba(6,182,212,0.45)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_55px_rgba(16,185,129,0.7)] active:scale-95"
+              >
+                <span class="text-xl">💥</span>
+                <span>Clase de prueba GRATIS</span>
+                <svg class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+
+              <a
+                href="#categorias"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-slate-900/60 px-7 py-5 text-sm sm:text-base font-bold uppercase tracking-wider text-slate-200 backdrop-blur-md transition hover:border-cyan-400 hover:bg-slate-800/80 hover:text-white"
+              >
+                <span>Ver Categorías</span>
+                <span class="text-cyan-400">↓</span>
+              </a>
+            </div>
+
+            <!-- Micro text WhatsApp -->
+            <p class="mt-4 text-xs sm:text-sm text-slate-400 flex items-center gap-2">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              Atención directa por WhatsApp al <strong>0984917908</strong>. Cupos limitados por grupo.
+            </p>
+          </div>
+
+          <!-- Tarjetas de Stats en Glassmorphism -->
+          <div class="mt-14 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5">
+            <div class="rounded-2xl border border-white/10 bg-slate-900/40 p-4 sm:p-5 backdrop-blur-xl transition hover:border-cyan-500/40 hover:bg-slate-900/70">
+              <span class="block font-['Outfit',sans-serif] text-2xl sm:text-4xl font-extrabold text-cyan-400">8 a 17</span>
+              <span class="mt-1 block text-xs sm:text-sm font-semibold text-slate-300">Años en Formativa</span>
+              <span class="text-[11px] text-slate-400">Niños y jóvenes</span>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-slate-900/40 p-4 sm:p-5 backdrop-blur-xl transition hover:border-cyan-500/40 hover:bg-slate-900/70">
+              <span class="block font-['Outfit',sans-serif] text-2xl sm:text-4xl font-extrabold text-emerald-400">Sáb & Dom</span>
+              <span class="mt-1 block text-xs sm:text-sm font-semibold text-slate-300">10:00 a 12:30</span>
+              <span class="text-[11px] text-slate-400">Entrenamiento continuo</span>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-slate-900/40 p-4 sm:p-5 backdrop-blur-xl transition hover:border-cyan-500/40 hover:bg-slate-900/70">
+              <span class="block font-['Outfit',sans-serif] text-2xl sm:text-4xl font-extrabold text-teal-300">La Luz</span>
+              <span class="mt-1 block text-xs sm:text-sm font-semibold text-slate-300">Canchas de la Luz</span>
+              <span class="text-[11px] text-slate-400">Sede Norte · Quito</span>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-slate-900/40 p-4 sm:p-5 backdrop-blur-xl transition hover:border-cyan-500/40 hover:bg-slate-900/70">
+              <span class="block font-['Outfit',sans-serif] text-2xl sm:text-4xl font-extrabold text-cyan-300">100%</span>
+              <span class="mt-1 block text-xs sm:text-sm font-semibold text-slate-300">Prueba Gratis</span>
+              <span class="text-[11px] text-slate-400">Ven a probar sin costo</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════ CATEGORÍAS PRINCIPALES (FORMATIVA & ABSOLUTO) ═════════════ -->
+      <section id="categorias" class="relative py-20 md:py-32 bg-[#050810] border-t border-white/5">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+          <div class="text-center max-w-3xl mx-auto">
+            <span class="inline-block rounded-full bg-cyan-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-cyan-400 border border-cyan-500/20">
+              Elige tu nivel de juego
+            </span>
+            <h2 class="mt-3 font-['Outfit',sans-serif] text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">
+              Únete a la <span class="text-cyan-400">Manada Pegasos</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg text-slate-300">
+              Dos categorías pensadas para cada momento de tu formación deportiva: desde tus primeros toques hasta la más alta competencia.
+            </p>
+          </div>
+
+          <!-- Cards de las Categorías con diseño de alto voltaje -->
+          <div class="mt-14 grid gap-8 lg:grid-cols-2">
+            <!-- CATEGORÍA 1: FORMATIVA -->
+            <div class="group relative overflow-hidden rounded-3xl border border-cyan-500/30 bg-gradient-to-b from-slate-900/90 to-[#0A1224] p-8 sm:p-12 shadow-[0_0_30px_rgba(6,182,212,0.15)] transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_50px_rgba(6,182,212,0.3)]">
+              <!-- Background accent glow -->
+              <div class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/15 blur-3xl transition duration-500 group-hover:scale-125"></div>
+
+              <div class="flex items-center justify-between gap-4">
+                <span class="rounded-full bg-cyan-400/15 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-cyan-300 border border-cyan-400/30">
+                  Escuela Continua
+                </span>
+                <span class="font-['Outfit',sans-serif] text-3xl sm:text-4xl font-black text-cyan-400">
+                  8 a 17 años
+                </span>
+              </div>
+
+              <h3 class="mt-6 font-['Outfit',sans-serif] text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+                Categoría Formativa
+              </h3>
+              <p class="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+                Diseñada para niños y jóvenes que inician desde cero o buscan afianzar sus bases técnicas con entrenadores dedicados y en un ambiente motivador.
+              </p>
+
+              <div class="mt-8 space-y-3.5 border-y border-white/10 py-6">
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <span class="text-sm sm:text-base font-medium text-slate-200"><strong>Fundamentos completos:</strong> Saque, recepción, voleo, armado y remate.</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <span class="text-sm sm:text-base font-medium text-slate-200"><strong>Grupos por edad y nivel:</strong> Atención personalizada y seguimiento técnico.</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <span class="text-sm sm:text-base font-medium text-slate-200"><strong>Horario:</strong> Sábados y Domingos 10:00 - 12:30 en Canchas de La Luz.</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <span class="text-sm sm:text-base font-medium text-slate-200"><strong>Primeros fogueos:</strong> Partidos amistosos para desarrollar soltura y confianza.</span>
+                </div>
+              </div>
+
+              <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                <a
+                  href={WA_FORMATIVA}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-4 text-center font-['Outfit',sans-serif] text-base font-extrabold uppercase tracking-wide text-slate-950 transition hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]"
+                >
+                  <span>Inscribir en Formativa</span>
+                  <span>→</span>
+                </a>
+                <span class="text-xs text-slate-400 text-center sm:text-right">
+                  Clase de prueba gratis incluida
+                </span>
+              </div>
+            </div>
+
+            <!-- CATEGORÍA 2: EQUIPO ABSOLUTO -->
+            <div class="group relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-b from-slate-900/90 to-[#06151B] p-8 sm:p-12 shadow-[0_0_30px_rgba(16,185,129,0.15)] transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_0_50px_rgba(16,185,129,0.3)]">
+              <!-- Background accent glow -->
+              <div class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-500/15 blur-3xl transition duration-500 group-hover:scale-125"></div>
+
+              <div class="flex items-center justify-between gap-4">
+                <span class="rounded-full bg-emerald-400/15 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-emerald-300 border border-emerald-400/30">
+                  Alta Competencia
+                </span>
+                <span class="font-['Outfit',sans-serif] text-3xl sm:text-4xl font-black text-emerald-400">
+                  Masculino
+                </span>
+              </div>
+
+              <h3 class="mt-6 font-['Outfit',sans-serif] text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+                Equipo Absoluto
+              </h3>
+              <p class="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+                Para jugadores con experiencia previa que buscan máxima exigencia física, sistemas de juego competitivos (5-1) y ritmo de torneos en Quito.
+              </p>
+
+              <div class="mt-8 space-y-3.5 border-y border-white/10 py-6">
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-400">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <span class="text-sm sm:text-base font-medium text-slate-200"><strong>Entrenamiento táctico avanzado:</strong> Sistemas 5-1, coberturas y bloqueo zonal.</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-400">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <span class="text-sm sm:text-base font-medium text-slate-200"><strong>Especialización por posición:</strong> Armadores, puntas receptoras, centrales y líberos.</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-400">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <span class="text-sm sm:text-base font-medium text-slate-200"><strong>Ritmo de competencia:</strong> Fogueos continuos frente a clubes y universidades de Pichincha.</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-400">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  </div>
+                  <span class="text-sm sm:text-base font-medium text-slate-200"><strong>Exigencia física y mental:</strong> Disciplina atlética y preparación de alto impacto.</span>
+                </div>
+              </div>
+
+              <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                <a
+                  href={WA_ABSOLUTO}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-400 px-6 py-4 text-center font-['Outfit',sans-serif] text-base font-extrabold uppercase tracking-wide text-slate-950 transition hover:bg-emerald-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]"
+                >
+                  <span>Postular al Absoluto</span>
+                  <span>→</span>
+                </a>
+                <span class="text-xs text-slate-400 text-center sm:text-right">
+                  Entrenamiento de prueba disponible
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════ ESCUELA PERMANENTE & PROGRAMAS (HEREDADO DE MAIN) ═════════════ -->
+      <section id="permanente" class="relative py-20 md:py-32 bg-[#060B14]">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+          <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-6">
+              <span class="inline-block rounded-full bg-cyan-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-cyan-400 border border-cyan-500/20">
+                🏐 Todo el año · Metodología continua
+              </span>
+              <h2 class="mt-4 font-['Outfit',sans-serif] text-4xl sm:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+                Escuela Permanente <br />
+                <span class="text-cyan-400">Pegasos Volleyball</span>
+              </h2>
+              <p class="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed">
+                La Escuela Permanente es la base y corazón de nuestro club. No son cursos vacacionales pasajeros: aquí se entrena todo el año, con un plan estructurado por etapas que garantiza la evolución deportiva de cada integrante.
+              </p>
+
+              <!-- Módulos de desarrollo -->
+              <div class="mt-8 space-y-4">
+                <div class="rounded-2xl border border-white/10 bg-slate-900/50 p-5 backdrop-blur-md transition hover:border-cyan-400/40">
+                  <div class="flex items-center gap-3">
+                    <span class="text-2xl">⚡</span>
+                    <h3 class="font-['Outfit',sans-serif] text-xl font-bold uppercase text-white">1. Formación Técnica Básica</h3>
+                  </div>
+                  <p class="mt-2 text-sm text-slate-400">Mecánica de golpeo, postura corporal adecuada, desplazamientos en pista y lectura de trayectoria del balón.</p>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-slate-900/50 p-5 backdrop-blur-md transition hover:border-cyan-400/40">
+                  <div class="flex items-center gap-3">
+                    <span class="text-2xl">🎯</span>
+                    <h3 class="font-['Outfit',sans-serif] text-xl font-bold uppercase text-white">2. Tecnificación por Rol</h3>
+                  </div>
+                  <p class="mt-2 text-sm text-slate-400">Entrenamiento específico por rol de juego: precisión de colocación, potencia y dirección de remate, reflejos de defensa.</p>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-slate-900/50 p-5 backdrop-blur-md transition hover:border-cyan-400/40">
+                  <div class="flex items-center gap-3">
+                    <span class="text-2xl">🏆</span>
+                    <h3 class="font-['Outfit',sans-serif] text-xl font-bold uppercase text-white">3. Táctica Colectiva y Fogueo</h3>
+                  </div>
+                  <p class="mt-2 text-sm text-slate-400">Comunicación en campo, sistemas de apoyo, transiciones ataque-defensa y ritmo de partido real.</p>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <a
+                  href={WA_PERMANENTE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-emerald-400 px-7 py-4 text-sm font-black uppercase tracking-wider text-slate-950 transition hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
+                >
+                  <span>Consultar cupos disponibles</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Columna derecha: Tarjeta visual de la escuela con foto real -->
+            <div class="lg:col-span-6">
+              <div class="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/60 p-4 sm:p-6 backdrop-blur-2xl shadow-2xl">
+                <div class="relative h-80 sm:h-96 w-full overflow-hidden rounded-2xl">
+                  <img
+                    src="/images/equipo.jpg"
+                    alt="Jugadores de Pegasos Volleyball"
+                    class="h-full w-full object-cover transition duration-500 hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <span class="rounded-full bg-cyan-400 px-3 py-1 text-xs font-black uppercase text-slate-950">
+                      Entrenamientos 2026
+                    </span>
+                    <p class="mt-2 font-['Outfit',sans-serif] text-xl font-bold uppercase text-white">
+                      Canchas de La Luz · Sábados y Domingos
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
+                  <div class="rounded-xl bg-slate-950/60 border border-white/10 p-3">
+                    <span class="block text-xs uppercase text-slate-400">Edades</span>
+                    <strong class="font-['Outfit',sans-serif] text-lg text-cyan-400">8 a 17 años</strong>
+                  </div>
+                  <div class="rounded-xl bg-slate-950/60 border border-white/10 p-3">
+                    <span class="block text-xs uppercase text-slate-400">Días</span>
+                    <strong class="font-['Outfit',sans-serif] text-lg text-emerald-400">Sáb y Dom</strong>
+                  </div>
+                  <div class="rounded-xl bg-slate-950/60 border border-white/10 p-3 col-span-2 sm:col-span-1">
+                    <span class="block text-xs uppercase text-slate-400">Horario</span>
+                    <strong class="font-['Outfit',sans-serif] text-lg text-slate-200">10:00 - 12:30</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════ PILARES Y VALORES PEGASOS ═════════════ -->
+      <section id="valores" class="relative py-20 md:py-32 bg-[#050810] border-t border-white/5">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+          <div class="max-w-3xl">
+            <span class="inline-block rounded-full bg-emerald-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-emerald-400 border border-emerald-500/20">
+              Nuestra Filosofía
+            </span>
+            <h2 class="mt-3 font-['Outfit',sans-serif] text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">
+              Mucho más que un deporte: <br />
+              <span class="text-emerald-400">Valores que transforman vidas</span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg text-slate-300">
+              En Club Pegasos no solo entrenamos voleibolistas; formamos personas íntegras, seguras de sí mismas y comprometidas con su equipo.
+            </p>
+          </div>
+
+          <!-- Grid de valores con glassmorphism -->
+          <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {valores.map((v) => (
+              <div class={`group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b ${v.color} p-7 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 ${v.border} ${v.glow}`}>
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-900/80 border border-white/15 text-3xl shadow-lg transition duration-300 group-hover:scale-110">
+                  {v.icon}
+                </div>
+                <h3 class="mt-6 font-['Outfit',sans-serif] text-2xl font-black uppercase tracking-tight text-white">
+                  {v.title}
+                </h3>
+                <p class="mt-3 text-sm leading-relaxed text-slate-300">
+                  {v.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════ GALERÍA FOTOGRÁFICA REAL (DE MAIN) ═════════════ -->
+      <section id="galeria" class="relative py-20 md:py-32 bg-[#060B14]">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <span class="inline-block rounded-full bg-cyan-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-cyan-400 border border-cyan-500/20">
+                La Vida en las Canchas
+              </span>
+              <h2 class="mt-3 font-['Outfit',sans-serif] text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">
+                Galería de la <span class="text-cyan-400">Manada</span>
+              </h2>
+            </div>
+            <p class="max-w-md text-sm sm:text-base text-slate-400">
+              Entrenamientos continuos, torneos, risas y esfuerzo real. Así se vive el voleibol cada fin de semana en Pegasos.
+            </p>
+          </div>
+
+          <!-- Grid fotográfico moderno -->
+          <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {galeriaFotos.map((foto) => (
+              <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 aspect-[4/5] shadow-xl">
+                <img
+                  src={foto.src}
+                  alt={foto.alt}
+                  loading="lazy"
+                  class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110 group-hover:filter group-hover:brightness-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity"></div>
+                <div class="absolute bottom-5 left-5 right-5 transition-transform duration-300 group-hover:-translate-y-1">
+                  <span class="inline-block rounded-full bg-cyan-400/20 border border-cyan-400/40 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-cyan-300">
+                    {foto.tag}
+                  </span>
+                  <h3 class="mt-2 font-['Outfit',sans-serif] text-xl font-bold uppercase text-white">
+                    {foto.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════ SEDE, HORARIOS Y UBICACIÓN ═════════════ -->
+      <section id="sede" class="relative py-20 md:py-32 bg-[#050810] border-t border-white/5">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+          <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-5">
+              <span class="inline-block rounded-full bg-emerald-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-emerald-400 border border-emerald-500/20">
+                Sede Oficial Quito
+              </span>
+              <h2 class="mt-4 font-['Outfit',sans-serif] text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">
+                Canchas de <br /><span class="text-emerald-400">La Luz</span>
+              </h2>
+              <p class="mt-4 text-base text-slate-300 leading-relaxed">
+                Nuestros entrenamientos se desarrollan en las Canchas de La Luz, con instalaciones adecuadas para la práctica segura y de alto rendimiento.
+              </p>
+
+              <div class="mt-8 space-y-4">
+                <div class="flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/50 p-4">
+                  <span class="text-2xl mt-0.5">📍</span>
+                  <div>
+                    <h4 class="font-['Outfit',sans-serif] text-lg font-bold text-white">Ubicación</h4>
+                    <p class="text-sm text-slate-300">Canchas de la Luz N88 202, Quito, Ecuador</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/50 p-4">
+                  <span class="text-2xl mt-0.5">⏰</span>
+                  <div>
+                    <h4 class="font-['Outfit',sans-serif] text-lg font-bold text-white">Horarios de Práctica</h4>
+                    <p class="text-sm text-slate-300">Sábados y Domingos · 10:00 a 12:30</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/50 p-4">
+                  <span class="text-2xl mt-0.5">🎒</span>
+                  <div>
+                    <h4 class="font-['Outfit',sans-serif] text-lg font-bold text-white">¿Qué llevar a tu primera clase?</h4>
+                    <p class="text-sm text-slate-300">Ropa deportiva, zapatillas deportivas cómodas, agua y llegar 10 minutos antes.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 flex flex-wrap gap-4">
+                <a
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-2xl bg-slate-800 border border-white/15 px-6 py-4 text-sm font-bold uppercase tracking-wider text-white transition hover:border-emerald-400 hover:bg-slate-700"
+                >
+                  <span>📍 Abrir en Google Maps</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Mapa / Card visual -->
+            <div class="lg:col-span-7">
+              <div class="relative overflow-hidden rounded-3xl border border-cyan-500/30 bg-slate-900/80 p-6 sm:p-8 backdrop-blur-2xl shadow-[0_0_40px_rgba(6,182,212,0.15)]">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                  <div>
+                    <span class="text-xs uppercase text-cyan-400 font-bold tracking-wider">Punto de Encuentro</span>
+                    <h3 class="font-['Outfit',sans-serif] text-2xl font-black uppercase text-white">Sede La Luz</h3>
+                  </div>
+                  <span class="rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 text-xs font-semibold">
+                    En vivo los fines de semana
+                  </span>
+                </div>
+
+                <!-- Simulación moderna de radar/mapa de la cancha -->
+                <div class="relative h-64 sm:h-80 w-full overflow-hidden rounded-2xl bg-gradient-to-br from-slate-950 via-[#0A1628] to-[#04101A] border border-cyan-500/20 flex flex-col items-center justify-center p-6 text-center">
+                  <!-- Malla de fondo del mapa -->
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.15),transparent_70%)]"></div>
+                  
+                  <div class="relative z-10 flex flex-col items-center">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(6,182,212,0.8)] animate-bounce">
+                      <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+
+                    <h4 class="mt-4 font-['Outfit',sans-serif] text-2xl font-black uppercase text-white">
+                      Canchas de la Luz
+                    </h4>
+                    <p class="mt-1 text-sm text-slate-300">N88 202, Sector La Luz · Quito</p>
+
+                    <a
+                      href={MAPS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-xs font-black uppercase tracking-wider text-slate-950 transition hover:bg-cyan-300 shadow-lg"
+                    >
+                      Ver ruta en GPS
+                    </a>
+                  </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                  <p class="text-xs text-slate-400">
+                    ¿Tienes dudas sobre cómo llegar? Escríbenos y te enviamos la ubicación en tiempo real.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════ PREGUNTAS FRECUENTES (FAQS) ═════════════ -->
+      <section id="faqs" class="relative py-20 md:py-32 bg-[#060B14]">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6">
+          <div class="text-center">
+            <span class="inline-block rounded-full bg-cyan-500/10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-cyan-400 border border-cyan-500/20">
+              Resolvemos tus dudas
+            </span>
+            <h2 class="mt-3 font-['Outfit',sans-serif] text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">
+              Preguntas <span class="text-cyan-400">Frecuentes</span>
+            </h2>
+          </div>
+
+          <div class="mt-12 space-y-4">
+            {faqs.map((faq) => (
+              <div class="rounded-2xl border border-white/10 bg-slate-900/50 p-6 backdrop-blur-md transition hover:border-cyan-400/30">
+                <h3 class="font-['Outfit',sans-serif] text-lg sm:text-xl font-bold text-white flex items-center gap-3">
+                  <span class="text-cyan-400">🏐</span>
+                  <span>{faq.q}</span>
+                </h3>
+                <p class="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed pl-8">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 text-center">
+            <p class="text-sm text-slate-400">
+              ¿Tienes otra consulta específica?
+            </p>
+            <a href={WA_GENERAL} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block font-semibold text-cyan-400 hover:text-cyan-300 underline">
+              Escríbenos directamente por WhatsApp y te orientamos al instante →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════ BANDA FINAL DE CONVERSIÓN (HIGH IMPACT CTA) ═════════════ -->
+      <section class="relative isolate overflow-hidden bg-gradient-to-r from-cyan-950 via-slate-900 to-emerald-950 py-20 md:py-28 border-y border-cyan-500/30">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(6,182,212,0.25),transparent_60%)]"></div>
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(16,185,129,0.2),transparent_60%)]"></div>
+
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+          <div class="max-w-2xl text-center lg:text-left">
+            <span class="inline-block rounded-full bg-emerald-400/20 px-4 py-1 text-xs font-black uppercase tracking-widest text-emerald-300 border border-emerald-400/40">
+              Sin costo inicial · Sin compromiso
+            </span>
+            <h2 class="mt-4 font-['Outfit',sans-serif] text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-[0.95]">
+              Tu primera clase <br />
+              <span class="bg-gradient-to-r from-cyan-300 to-emerald-400 bg-clip-text text-transparent">
+                es nuestra
+              </span>
+            </h2>
+            <p class="mt-4 text-base sm:text-lg text-slate-200">
+              Ven a la cancha, conoce a los entrenadores, entrena con el equipo y vive la pasión del club antes de tomar una decisión.
+            </p>
+          </div>
+
+          <div class="shrink-0 flex flex-col items-center sm:items-end gap-3">
+            <a
+              href={WA_GENERAL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-center gap-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-emerald-400 px-9 py-6 font-['Outfit',sans-serif] text-xl sm:text-2xl font-black uppercase tracking-wider text-slate-950 shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_60px_rgba(16,185,129,0.8)] active:scale-95"
+            >
+              <span>Agendar por WhatsApp</span>
+              <svg class="h-7 w-7 transition-transform group-hover:rotate-12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </a>
+            <span class="text-xs text-slate-400">Respondemos en pocos minutos</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ═════════════ FOOTER COMPLETO ═════════════ -->
+    <footer class="bg-[#04070D] border-t border-white/5 pt-16 pb-28 md:pb-16 text-slate-400">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="grid gap-10 md:grid-cols-4">
+          <!-- Identidad -->
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-3">
+              <img src="/images/logo-badge.png" alt="Logo Pegasos" class="h-10 w-10 object-contain" />
+              <div>
+                <span class="font-['Outfit',sans-serif] text-xl font-black uppercase text-white tracking-wider">
+                  Pegasos Volleyball
+                </span>
+                <span class="block text-xs uppercase text-cyan-400 font-semibold">Club Deportivo · Quito</span>
+              </div>
+            </div>
+            <p class="mt-4 max-w-sm text-sm text-slate-400 leading-relaxed">
+              "Mucho más que una idea de negocio" — Club y escuela permanente de voleibol comprometida con el desarrollo integral de la juventud de Quito.
+            </p>
+            <div class="mt-6 flex items-center gap-4">
+              <a href="https://www.facebook.com/search/top?q=Club%20Pegasos%20Volleyball%20UIO" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-slate-300 hover:bg-cyan-500/20 hover:text-cyan-400 transition" aria-label="Facebook">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-slate-300 hover:bg-cyan-500/20 hover:text-cyan-400 transition" aria-label="Instagram">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-slate-300 hover:bg-cyan-500/20 hover:text-cyan-400 transition" aria-label="YouTube">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+              </a>
+              <a href={WA_GENERAL} target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-slate-300 hover:bg-emerald-500/20 hover:text-emerald-400 transition" aria-label="WhatsApp">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Navegación -->
+          <div>
+            <h4 class="font-['Outfit',sans-serif] text-base font-bold uppercase tracking-wider text-white">Secciones</h4>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a href="#top" class="hover:text-cyan-400 transition">Inicio</a></li>
+              <li><a href="#categorias" class="hover:text-cyan-400 transition">Categorías</a></li>
+              <li><a href="#permanente" class="hover:text-cyan-400 transition">Escuela Permanente</a></li>
+              <li><a href="#valores" class="hover:text-cyan-400 transition">Nuestros Valores</a></li>
+              <li><a href="#galeria" class="hover:text-cyan-400 transition">Galería</a></li>
+              <li><a href="#sede" class="hover:text-cyan-400 transition">Sede & Horarios</a></li>
+            </ul>
+          </div>
+
+          <!-- Contacto Directo -->
+          <div>
+            <h4 class="font-['Outfit',sans-serif] text-base font-bold uppercase tracking-wider text-white">Contacto Directo</h4>
+            <ul class="mt-4 space-y-2.5 text-sm">
+              <li>
+                <span class="block text-xs uppercase text-slate-400">WhatsApp Oficial</span>
+                <a href={WA_GENERAL} target="_blank" rel="noopener noreferrer" class="font-semibold text-cyan-400 hover:underline">
+                  +593 98 491 7908
+                </a>
+              </li>
+              <li>
+                <span class="block text-xs uppercase text-slate-400">Sede Canchas</span>
+                <span class="text-slate-300">Canchas de la Luz N88 202, Quito</span>
+              </li>
+              <li>
+                <span class="block text-xs uppercase text-slate-400">Días de Entrenamiento</span>
+                <span class="text-slate-300">Sábados y Domingos 10:00 - 12:30</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-12 border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <p>© {year} Club Pegasos Volleyball UIO. Todos los derechos reservados.</p>
+          <p class="text-slate-400">Voleo de Campeones · Quito, Ecuador</p>
+        </div>
       </div>
     </footer>
 
-    <!-- Barra fija de WhatsApp (solo móvil) -->
-    <div class="fixed inset-x-0 bottom-0 z-50 border-t border-[#4DFF9A]/40 bg-[#050B1A]/95 p-3 backdrop-blur md:hidden">
+    <!-- ═════════════ FLOATING WHATSAPP CTA PERSISTENTE ═════════════ -->
+    <!-- En móvil: barra inferior fija -->
+    <div class="fixed inset-x-0 bottom-0 z-50 border-t border-cyan-500/30 bg-[#060B14]/95 p-3 backdrop-blur-xl md:hidden">
       <a
         href={WA_GENERAL}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center justify-center gap-3 bg-[#4DFF9A] py-4 font-display text-2xl font-black italic uppercase tracking-wide text-[#050B1A] shadow-[0_0_30px_rgba(77,255,154,0.5)] active:scale-[0.98]"
+        class="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-400 to-emerald-400 py-3.5 text-center font-['Outfit',sans-serif] text-lg font-black uppercase tracking-wider text-slate-950 shadow-[0_0_25px_rgba(6,182,212,0.6)] active:scale-95"
       >
-        💥 Clase de prueba GRATIS
+        <span>💥 Clase de prueba GRATIS</span>
       </a>
     </div>
+
+    <!-- En escritorio: botón flotante derecho con pulso y tooltip -->
+    <aside class="hidden md:block fixed bottom-6 right-6 z-50 group" aria-label="WhatsApp flotante">
+      <div class="absolute right-16 top-1/2 -translate-y-1/2 rounded-xl bg-slate-900/90 border border-cyan-500/30 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xl backdrop-blur-md opacity-0 pointer-events-none transition duration-300 group-hover:opacity-100 whitespace-nowrap">
+        ¡Agenda tu clase gratis! 🏐
+      </div>
+      <a
+        href={WA_GENERAL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 shadow-[0_0_30px_rgba(16,185,129,0.5)] transition duration-300 hover:scale-110 hover:shadow-[0_0_45px_rgba(16,185,129,0.8)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
+        aria-label="Contactar por WhatsApp"
+      >
+        <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </a>
+    </aside>
+
+    <!-- Script para interacción con el menú móvil -->
+    <script>
+      const mobileBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const navLinks = document.querySelectorAll(".mobile-nav-link");
+
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+      }
+    </script>
   </body>
 </html>
-
-<style>
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  :global(.font-display) {
-    font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
-  }
-  :global(.font-body) {
-    font-family: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
-  }
-
-  /* Texto contorneado para "Campeones" */
-  .outline-text {
-    color: transparent;
-    -webkit-text-stroke: 2px #2dd4bf;
-    text-shadow: 0 0 40px rgba(45, 212, 191, 0.45);
-  }
-  @media (min-width: 1024px) {
-    .outline-text {
-      -webkit-text-stroke: 3px #2dd4bf;
-    }
-  }
-
-  /* Botones inclinados estilo e-sports */
-  .skew-btn {
-    transform: skewX(-10deg);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
-  }
-  .skew-btn:hover {
-    transform: skewX(-10deg) scale(1.05);
-  }
-  .unskew {
-    transform: skewX(10deg);
-  }
-
-  /* Destello que cruza el botón al pasar el cursor */
-  .shine {
-    position: relative;
-    overflow: hidden;
-  }
-  .shine::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.65) 50%, transparent 65%);
-    transform: translateX(-130%);
-    transition: transform 0.7s ease;
-    pointer-events: none;
-  }
-  .shine:hover::after {
-    transform: translateX(130%);
-  }
-
-  /* Paneles de categorías con corte diagonal (solo escritorio) */
-  @media (min-width: 768px) {
-    .panel-left {
-      clip-path: polygon(0 0, 100% 0, calc(100% - 4rem) 100%, 0 100%);
-    }
-    .panel-right {
-      clip-path: polygon(4rem 0, 100% 0, 100% 100%, 0 100%);
-      margin-left: -4rem;
-    }
-  }
-
-  /* Banda final */
-  .cta-band {
-    background: linear-gradient(120deg, #2dd4bf 0%, #4dff9a 100%);
-  }
-
-  /* Animaciones: solo si el usuario no pidió reducir el movimiento */
-  @media (prefers-reduced-motion: no-preference) {
-    .rise {
-      opacity: 0;
-      transform: translateY(40px) skewX(-6deg);
-      animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-      animation-delay: var(--d, 0ms);
-    }
-    @keyframes rise {
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    .glow-pulse {
-      animation: glow 2.6s ease-in-out infinite;
-    }
-    @keyframes glow {
-      0%,
-      100% {
-        box-shadow: 0 0 40px rgba(77, 255, 154, 0.45);
-      }
-      50% {
-        box-shadow: 0 0 80px rgba(77, 255, 154, 0.85);
-      }
-    }
-    .glow-pulse:hover {
-      animation: none;
-    }
-
-    .court {
-      transform-origin: center;
-      animation: drift 14s ease-in-out infinite alternate;
-    }
-    @keyframes drift {
-      from {
-        transform: translateY(-50%) rotate(-3deg);
-      }
-      to {
-        transform: translateY(-50%) rotate(2deg);
-      }
-    }
-  }
-</style>
