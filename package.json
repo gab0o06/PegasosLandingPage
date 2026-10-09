@@ -16,8 +16,10 @@
     "ig-sniper:more": "node scripts/ig-sniper.mjs --posts 18"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.5",
-    "playwright-core": "^1.63.0"
+    "playwright-core": "^1.63.0",
+    "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
     "esbuild": true

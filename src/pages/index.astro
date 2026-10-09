@@ -1,103 +1,397 @@
 ---
-// src/pages/index.astro
-// Página principal (landing page). Importa los componentes de cada sección.
-// Para agregar o quitar secciones, comenta/descomenta las líneas correspondientes.
+/**
+ * Club Pegasos Volleyball — Landing page (One-Page)
+ * Stack: Astro + Tailwind CSS
+ *
+ * Requisito: Tailwind ya integrado en el proyecto
+ *   npx astro add tailwind
+ *
+ * Paleta (clases arbitrarias de Tailwind, funcionan en v3 y v4):
+ *   Azul marino (primario)   #0B2A4A
+ *   Teal (secundario)        #12A39A
+ *   Verde claro (solo CTA)   #8DF0A8
+ *   Niebla (fondo alterno)   #EEF6F7
+ *   Blanco                   #FFFFFF
+ */
+import "../styles/global.css";
+// ───── Datos editables (cambia aquí, no en el HTML) ─────
+const club = {
+  nombre: "Club Pegasos Volleyball",
+  lema: "Voleo de Campeones",
+  logo: "https://placehold.co/96x96/0B2A4A/FFFFFF?text=P", // TODO: reemplazar por el logo real
+  whatsapp: "https://wa.me/numerodeejemplo", // TODO: reemplazar por el número real
+  mapa: "https://www.google.com/maps/search/?api=1&query=Sede+La+Luz+Quito",
+  ctaTexto: "💥 Agendar Clase de Prueba GRATIS",
+};
 
-import Layout   from '../layouts/Layout.astro';
-import Navbar    from '../components/Navbar.astro';
-import Hero      from '../components/Hero.astro';
-import About     from '../components/About.astro';
-import Programs  from '../components/Programs.astro';
-import Permanente from '../components/Permanente.astro';
-import Galeria   from '../components/Galeria.astro';
-import Social    from '../components/Social.astro';
-import Contact   from '../components/Contact.astro';
-import Footer    from '../components/Footer.astro';
-import '../styles/global.css';
-import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+const programas = [
+  {
+    titulo: "Escuela Formativa",
+    edad: "8 a 17 años",
+    descripcion:
+      "Niños y jóvenes aprenden voleibol desde la base: técnica, trabajo en equipo y confianza, con entrenadores que cuidan cada etapa del crecimiento.",
+    puntos: [
+      "Grupos organizados por edad y nivel",
+      "Técnica y fundamentos bien construidos",
+      "Un ambiente seguro para aprender y equivocarse",
+    ],
+  },
+  {
+    titulo: "Equipo Absoluto Masculino",
+    edad: "Categoría competitiva",
+    descripcion:
+      "Para jugadores que quieren competir. Entrenamiento exigente, disciplina de equipo y representación del club en torneos.",
+    puntos: [
+      "Preparación táctica y física",
+      "Participación en competencias",
+      "Camino natural para egresados de la escuela",
+    ],
+  },
+];
+
+const valores = [
+  {
+    titulo: "Formamos jugadores",
+    texto:
+      "Técnica, táctica y condición física trabajadas con método, para que cada deportista mejore de forma constante.",
+  },
+  {
+    titulo: "Creamos comunidad",
+    texto:
+      "Aquí los chicos hacen amigos, las familias se conocen y el club se siente como un segundo hogar.",
+  },
+  {
+    titulo: "Transmitimos valores",
+    texto:
+      "Respeto, disciplina, compañerismo y perseverancia: lo que se aprende en la cancha acompaña toda la vida.",
+  },
+];
+
+const redes = [
+  { nombre: "Instagram", url: "https://instagram.com/" }, // TODO: URL real
+  { nombre: "Facebook", url: "https://facebook.com/" }, // TODO: URL real
+  { nombre: "TikTok", url: "https://tiktok.com/" }, // TODO: URL real
+];
+
+const anio = new Date().getFullYear();
 ---
 
-<Layout>
-  <Navbar />
-  <main>
-    <Hero />
-    <About />
-    <Programs />
-    <Permanente />
-    <Galeria />
-    <Social />
-    <Contact />
-  </main>
-  <Footer />
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{club.nombre} | {club.lema} — Voleibol en Quito</title>
+    <meta
+      name="description"
+      content="Escuela formativa de voleibol para niños y jóvenes de 8 a 17 años y equipo absoluto masculino en Quito. Agenda tu clase de prueba gratis."
+    />
+    <link rel="icon" href={club.logo} />
 
-  <!-- Script global: animaciones scroll reveal -->
-  <script>
-    // Scroll reveal — activa la clase .visible cuando el elemento entra en pantalla
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
+    <!-- Tipografías: títulos con carácter + texto muy legible -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Botón flotante WhatsApp — aparece al hacer scroll
-    const floatingBtn = document.getElementById('waFloating');
-    if (floatingBtn) {
-      window.addEventListener('scroll', () => {
-        floatingBtn.classList.toggle('visible', window.scrollY > 300);
-      });
-    }
-  </script>
-
-  <!-- Botón flotante de WhatsApp -->
-  <a
-    id="waFloating"
-    href="https://wa.me/593984917908?text=Hola!%20Me%20interesa%20saber%20más%20sobre%20Pegasos%20Volleyball%20UIO"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Contactar por WhatsApp"
-    class="wa-floating"
+  <body
+    class="bg-white font-['Nunito_Sans',sans-serif] text-[#0B2A4A] antialiased"
   >
-    <WhatsAppIcon size={28} />
-  </a>
-</Layout>
+    <!-- Enlace de accesibilidad para teclado -->
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2"
+    >
+      Saltar al contenido
+    </a>
 
-<style>
-  .wa-floating {
-    position: fixed;
-    bottom: 1.75rem;
-    right: 1.75rem;
-    z-index: 900;
-    width: 58px;
-    height: 58px;
-    background: #25d366;
-    color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.8);
-  }
+    <!-- ═════════ 1. HEADER ═════════
+         Logo + nombre del club + botón de contacto.
+         Sticky para que la navegación siempre esté a mano. -->
+    <header
+      class="sticky top-0 z-40 border-b border-[#0B2A4A]/10 bg-white/95 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3"
+      >
+        <a href="#inicio" class="flex items-center gap-3">
+          <img
+            src={club.logo}
+            alt={`Logo de ${club.nombre}`}
+            width="44"
+            height="44"
+            class="h-11 w-11 rounded-full"
+          />
+          <span
+            class="font-['Bricolage_Grotesque',sans-serif] text-lg font-extrabold leading-tight sm:text-xl"
+          >
+            {club.nombre}
+          </span>
+        </a>
 
-  .wa-floating.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: scale(1);
-  }
+        <a
+          href={club.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full border-2 border-[#0B2A4A] px-4 py-2 text-sm font-bold transition hover:bg-[#0B2A4A] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#12A39A]"
+        >
+          Contáctanos
+        </a>
+      </div>
+    </header>
 
-  .wa-floating:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
-  }
-</style>
+    <main id="contenido">
+      <!-- ═════════ 2. HERO ═════════
+           Fondo azul marino con líneas de cancha (SVG) como motivo único.
+           Titular dirigido a padres y jugadores + CTA principal. -->
+      <section
+        id="inicio"
+        class="relative overflow-hidden bg-[#0B2A4A] text-white"
+      >
+        <!-- Líneas de cancha: decorativas, ocultas para lectores de pantalla -->
+        <svg
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12]"
+          viewBox="0 0 800 500"
+          preserveAspectRatio="xMidYMid slice"
+          fill="none"
+          stroke="#12A39A"
+          stroke-width="4"
+        >
+          <rect x="60" y="60" width="680" height="380"></rect>
+          <line x1="400" y1="60" x2="400" y2="440"></line>
+          <line x1="253" y1="60" x2="253" y2="440"></line>
+          <line x1="547" y1="60" x2="547" y2="440"></line>
+        </svg>
+
+        <div class="relative mx-auto max-w-6xl px-5 py-20 sm:py-28">
+          <p class="mb-4 text-base font-semibold text-[#8DF0A8] sm:text-lg">
+            {club.lema}
+          </p>
+
+          <h1
+            class="max-w-3xl font-['Bricolage_Grotesque',sans-serif] text-4xl font-extrabold leading-[1.05] sm:text-6xl"
+          >
+            Tu hijo aprende a jugar. Tú lo ves crecer.
+          </h1>
+
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
+            A través del voleibol formamos jugadores, creamos comunidad y
+            transmitimos valores que inspiran. Para niños y jóvenes de 8 a 17
+            años, y para quienes quieren competir en nuestro equipo absoluto
+            masculino.
+          </p>
+
+          <div
+            class="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
+          >
+            <a
+              href={club.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block rounded-full bg-[#8DF0A8] px-8 py-4 text-lg font-extrabold text-[#0B2A4A] shadow-lg shadow-black/20 transition hover:scale-[1.03] hover:bg-[#a6f5bb] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:scale-100"
+            >
+              {club.ctaTexto}
+            </a>
+            <span class="text-sm text-white/70"
+              >Sin compromiso. Te respondemos por WhatsApp.</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════ 3. NUESTROS PROGRAMAS ═════════
+           Dos tarjetas: una por programa. Se generan desde el arreglo `programas`. -->
+      <section id="programas" class="bg-white py-20">
+        <div class="mx-auto max-w-6xl px-5">
+          <h2
+            class="max-w-xl font-['Bricolage_Grotesque',sans-serif] text-3xl font-extrabold sm:text-4xl"
+          >
+            Nuestros programas
+          </h2>
+          <p class="mt-3 max-w-xl text-lg text-[#0B2A4A]/75">
+            Hay un lugar para quien empieza y para quien quiere competir.
+          </p>
+
+          <div class="mt-12 grid gap-8 md:grid-cols-2">
+            {
+              programas.map((p, i) => (
+                <article
+                  class={`flex flex-col rounded-2xl border-2 p-8 ${
+                    i === 0
+                      ? "border-[#12A39A] bg-[#EEF6F7]"
+                      : "border-[#0B2A4A] bg-white"
+                  }`}
+                >
+                  <h3 class="font-['Bricolage_Grotesque',sans-serif] text-2xl font-extrabold">
+                    {p.titulo}
+                  </h3>
+                  <p class="mt-1 font-bold text-[#0E857E]">{p.edad}</p>
+                  <p class="mt-4 leading-relaxed text-[#0B2A4A]/85">
+                    {p.descripcion}
+                  </p>
+
+                  <ul class="mt-6 space-y-3">
+                    {p.puntos.map((punto) => (
+                      <li class="flex gap-3">
+                        <svg
+                          aria-hidden="true"
+                          class="mt-1 h-5 w-5 shrink-0 text-[#12A39A]"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                        <span>{punto}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href={club.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-8 inline-block self-start font-bold text-[#0B2A4A] underline decoration-[#12A39A] decoration-4 underline-offset-4 hover:decoration-[#0B2A4A] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#12A39A]"
+                  >
+                    Preguntar por este programa
+                  </a>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════ 4. POR QUÉ ELEGIRNOS ═════════
+           Valores, comunidad y formación integral. -->
+      <section id="por-que-elegirnos" class="bg-[#EEF6F7] py-20">
+        <div class="mx-auto max-w-6xl px-5">
+          <h2
+            class="max-w-xl font-['Bricolage_Grotesque',sans-serif] text-3xl font-extrabold sm:text-4xl"
+          >
+            Más que un club: un lugar donde se crece
+          </h2>
+          <p class="mt-3 max-w-2xl text-lg text-[#0B2A4A]/75">
+            Entrenamos el voleibol y también el carácter. Eso es lo que las
+            familias valoran de Pegasos.
+          </p>
+
+          <div class="mt-12 grid gap-10 md:grid-cols-3">
+            {
+              valores.map((v) => (
+                <div class="border-t-4 border-[#12A39A] pt-5">
+                  <h3 class="font-['Bricolage_Grotesque',sans-serif] text-xl font-extrabold">
+                    {v.titulo}
+                  </h3>
+                  <p class="mt-3 leading-relaxed text-[#0B2A4A]/85">
+                    {v.texto}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════ 5. UBICACIÓN ═════════
+           Sede de entrenamiento + botón a Google Maps. -->
+      <section id="ubicacion" class="bg-white py-20">
+        <div
+          class="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 md:flex-row md:items-center md:justify-between"
+        >
+          <div class="max-w-xl">
+            <h2
+              class="font-['Bricolage_Grotesque',sans-serif] text-3xl font-extrabold sm:text-4xl"
+            >
+              Entrenamos en Sede La Luz, Quito
+            </h2>
+            <p class="mt-4 text-lg leading-relaxed text-[#0B2A4A]/80">
+              Ven a conocer la cancha y al equipo de entrenadores. Escríbenos y
+              coordinamos tu clase de prueba gratuita.
+            </p>
+          </div>
+
+          <a
+            href={club.mapa}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block rounded-full bg-[#12A39A] px-8 py-4 text-lg font-bold text-white transition hover:bg-[#0E857E] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#0B2A4A]"
+          >
+            📍 Ver en Google Maps
+          </a>
+        </div>
+      </section>
+
+      <!-- Cierre antes del footer: repite el CTA para quien llegó hasta aquí -->
+      <section class="bg-[#0B2A4A] py-16 text-center text-white">
+        <div class="mx-auto max-w-2xl px-5">
+          <h2
+            class="font-['Bricolage_Grotesque',sans-serif] text-3xl font-extrabold"
+          >
+            La primera clase es nuestra
+          </h2>
+          <p class="mt-3 text-white/80">Ven, prueba y decide con calma.</p>
+          <a
+            href={club.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-8 inline-block rounded-full bg-[#8DF0A8] px-8 py-4 text-lg font-extrabold text-[#0B2A4A] transition hover:bg-[#a6f5bb] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            {club.ctaTexto}
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ═════════ 6. FOOTER ═════════
+         Derechos reservados + redes sociales. -->
+    <footer class="bg-[#071C33] pb-28 pt-10 text-white/80 sm:pb-10">
+      <div
+        class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-5 sm:flex-row"
+      >
+        <p class="text-sm">
+          © {anio}
+          {club.nombre}. Todos los derechos reservados.
+        </p>
+
+        <nav aria-label="Redes sociales">
+          <ul class="flex gap-6">
+            {
+              redes.map((r) => (
+                <li>
+                  <a
+                    href={r.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-semibold underline-offset-4 hover:text-[#8DF0A8] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8DF0A8]"
+                  >
+                    {r.nombre}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- ═════════ CTA PERSISTENTE ═════════
+         Botón fijo visible en toda la página.
+         En móvil ocupa el ancho inferior; en escritorio flota abajo a la derecha. -->
+    <a
+      href={club.whatsapp}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed inset-x-4 bottom-4 z-50 rounded-full bg-[#8DF0A8] px-6 py-4 text-center text-base font-extrabold text-[#0B2A4A] shadow-xl shadow-black/30 transition hover:bg-[#a6f5bb] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#0B2A4A] sm:inset-x-auto sm:right-6 sm:bottom-6"
+    >
+      {club.ctaTexto}
+    </a>
+  </body>
+</html>
