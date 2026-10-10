@@ -1,70 +1,102 @@
 ---
 // src/components/Programs.astro
-// Sección de programas/entrenamientos de la escuela permanente.
+// Sección de programas y categorías: Escuela Formativa y Equipo Absoluto Masculino.
 import WhatsAppIcon from './WhatsAppIcon.astro';
 
 const programs = [
   {
-    icon: '🏋️',
-    tag: 'Permanente',
-    title: 'Entrenamiento Formativo',
+    icon: '👦',
+    tag: 'Formativa · 8 a 17 años',
+    title: 'Escuela Formativa',
     description:
-      'Clases continuas los fines de semana con metodología formativa y progresiva. Técnica de saque, recepción, colocación, remate y juego en equipo.',
+      'Desde iniciación hasta desarrollo técnico avanzado. Aprende fundamentos de voleo, saque, recepción, remate y juego colectivo con metodología progresiva.',
     details: [
       '📅 Sábados y Domingos',
-      '⏰ 10:00 – 12:30',
+      '⏰ 8:00 – 10:00 am',
       '📍 Canchas de la Luz, Quito',
-      '👦 Niños y jóvenes 8–17 años',
+      '✨ Primera clase de prueba GRATIS',
     ],
     color: 'primary',
+    btnText: 'Inscribir en Formativa →',
+    btnLink: 'https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20informaci%C3%B3n%20de%20la%20categor%C3%ADa%20Formativa%20(8-17%20a%C3%B1os)%20y%20agendar%20la%20clase%20de%20prueba%20GRATIS.',
+    subNote: 'Clase de prueba gratis incluida',
+    featured: false,
   },
   {
     icon: '⚡',
+    tag: 'Alta Competencia · Masculino',
+    title: 'Equipo Absoluto Masculino',
+    description:
+      'Para jugadores con experiencia previa que buscan máxima exigencia física, sistemas de juego competitivos (5-1) y ritmo de torneos en Quito.',
+    details: [
+      '🏐 Sistemas tácticos 5-1, coberturas y bloqueo zonal',
+      '🎯 Especialización: Armadores, puntas, centrales y líberos',
+      '🏆 Fogueos frente a clubes y universidades de Pichincha',
+      '⏰ Sábados y Domingos 8:00 – 10:00 am',
+    ],
+    color: 'secondary',
+    btnText: 'Postular al Absoluto →',
+    btnLink: 'https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20informaci%C3%B3n%20del%20Equipo%20Absoluto%20Masculino%20y%20agendar%20la%20clase%20de%20prueba%20GRATIS.',
+    subNote: 'Entrenamiento de prueba disponible',
+    featured: true,
+  },
+  {
+    icon: '🎯',
     tag: 'Especializado',
     title: 'Tecnificación por Posición',
     description:
-      'Módulos específicos enfocados en el perfeccionamiento de armadores, atacantes puntas, centrales y líberos para subir de nivel rápidamente.',
+      'Módulos específicos enfocados en el perfeccionamiento técnico de armadores, atacantes puntas, centrales y líberos para subir de nivel rápidamente.',
     details: [
-      '🏐 Posiciones y roles tácticos',
-      '🎯 Saque potente, bloqueo y defensa',
+      '🏐 Posiciones y roles tácticos definidos',
+      '🎯 Saque potente, lectura de defensa y bloqueo',
       '📍 Canchas de la Luz, Quito',
       '💪 Nivel intermedio y avanzado',
     ],
-    color: 'secondary',
+    color: 'primary',
+    btnText: 'Consultar Módulos →',
+    btnLink: 'https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20informaci%C3%B3n%20sobre%20los%20m%C3%B3dulos%20de%20tecnificaci%C3%B3n.',
+    subNote: 'Entrenamiento complementario',
+    featured: false,
   },
   {
     icon: '🏆',
     tag: 'Competencia',
-    title: 'Equipo & Fogueo',
+    title: 'Equipo & Fogueo Deportivo',
     description:
-      'Sesiones de juego real, desarrollo de táctica en conjunto y preparación para partidos amistosos y torneos juveniles en Quito.',
+      'Sesiones de juego real, desarrollo de táctica en conjunto y preparación para partidos amistosos y campeonatos en Pichincha.',
     details: [
-      '📅 Partidos y topes deportivos',
-      '🤝 Táctica de juego 4-2 / 5-1',
+      '📅 Partidos y topes deportivos oficiales',
+      '🤝 Táctica de juego y rotaciones',
       '📍 Canchas de la Luz, Quito',
-      '⭐ Mentalidad y espíritu de equipo',
+      '⭐ Mentalidad ganadora y espíritu de equipo',
     ],
-    color: 'primary',
+    color: 'secondary',
+    btnText: 'Más Información →',
+    btnLink: 'https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20consultar%20sobre%20partidos%20y%20fogueos.',
+    subNote: 'Convocatorias activas',
+    featured: false,
   },
 ];
 ---
 
 <section class="programs" id="programas">
-  <div class="container">
+  <div class="container programs__container">
     <div class="programs__header reveal">
-      <span class="badge">Nuestros Programas</span>
-      <h2 class="section-title">Formación deportiva para<br/><span>cada etapa</span></h2>
+      <span class="badge">Nuestras Categorías y Programas</span>
+      <h2 class="section-title">Formación y Alta Competencia<br/><span>para cada nivel</span></h2>
       <p class="section-subtitle">
-        Diseñados dentro de nuestra escuela permanente para acompañar el crecimiento
-        técnico, físico y mental de cada jugador.
+        En Club Pegasos contamos con Escuela Formativa para niños y jóvenes (8-17 años)
+        y nuestro Equipo Absoluto Masculino para jugadores de competencia.
       </p>
     </div>
 
     <div class="programs__grid">
       {programs.map((p, i) => (
-        <article class={`program-card reveal program-card--${p.color}`} style={`transition-delay:${i * 0.15}s`}>
-          <div class="program-card__icon">{p.icon}</div>
-          <span class="program-card__tag">{p.tag}</span>
+        <article class={`program-card reveal program-card--${p.color} ${p.featured ? 'program-card--featured' : ''}`} style={`transition-delay:${i * 0.1}s`}>
+          <div class="program-card__top">
+            <span class="program-card__icon">{p.icon}</span>
+            <span class="program-card__tag">{p.tag}</span>
+          </div>
           <h3 class="program-card__title">{p.title}</h3>
           <p class="program-card__desc">{p.description}</p>
           <ul class="program-card__details">
@@ -73,14 +105,15 @@ const programs = [
             ))}
           </ul>
           <a
-            href="https://wa.me/593984917908?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20programa%20de%20voleibol"
+            href={p.btnLink}
             target="_blank"
             rel="noopener noreferrer"
-            class="btn btn-primary program-card__btn"
+            class={`btn ${p.featured ? 'btn-secondary' : 'btn-primary'} program-card__btn`}
           >
             <WhatsAppIcon size={18} />
-            <span>Inscribirme →</span>
+            <span>{p.btnText}</span>
           </a>
+          <span class="program-card__subnote">{p.subNote}</span>
         </article>
       ))}
     </div>
@@ -106,23 +139,41 @@ const programs = [
     color: var(--color-primary);
   }
 
+  .programs__container {
+    max-width: 1400px;
+  }
+
   .programs__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 1.75rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1100px) {
+    .programs__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .programs__grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Card */
   .program-card {
     background: var(--color-white);
     border-radius: var(--radius-lg);
-    padding: 2rem 1.75rem;
+    padding: 1.9rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 0.8rem;
     border: 2px solid transparent;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
+    position: relative;
+    overflow-wrap: break-word;
   }
 
   .program-card:hover {
@@ -138,23 +189,34 @@ const programs = [
     border-color: var(--color-secondary);
   }
 
+  .program-card--featured {
+    border-color: var(--color-secondary);
+    background: linear-gradient(180deg, #ffffff 0%, #f4fbf7 100%);
+  }
+
+  .program-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
   .program-card__icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 1;
   }
 
   .program-card__tag {
     display: inline-block;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-family: var(--font-heading);
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--color-primary);
     background: var(--color-primary-light);
-    padding: 0.2rem 0.7rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 999px;
-    width: fit-content;
   }
 
   .program-card--secondary .program-card__tag {
@@ -164,10 +226,10 @@ const programs = [
 
   .program-card__title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 800;
     color: var(--color-dark);
-    line-height: 1.25;
+    line-height: 1.3;
   }
 
   .program-card__desc {
@@ -181,21 +243,31 @@ const programs = [
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.5rem;
     border-top: 1px solid var(--color-gray-light);
     padding-top: 1rem;
   }
 
   .program-card__details li {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--color-dark);
     font-weight: 500;
+    overflow-wrap: break-word;
   }
 
   .program-card__btn {
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
     text-align: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.1rem;
+  }
+
+  .program-card__subnote {
+    font-size: 0.75rem;
+    color: var(--color-gray);
+    text-align: center;
+    font-weight: 600;
   }
 </style>

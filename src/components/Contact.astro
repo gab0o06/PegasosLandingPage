@@ -5,7 +5,8 @@
 import WhatsAppIcon from './WhatsAppIcon.astro';
 
 const contactInfo = [
-  { icon: '📲', label: 'WhatsApp',  value: '0984917908',          link: 'https://wa.me/593984917908' },
+  { icon: '📲', label: 'WhatsApp',  value: '0984917908', link: 'https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20agendar%20mi%20clase%20de%20prueba%20GRATIS.' },
+  { icon: '⏰', label: 'Horarios',  value: 'Sáb y Dom 8:00 – 10:00 am', link: '#clase-gratis' },
   { icon: '📍', label: 'Ubicación', value: 'Canchas de la Luz, Quito', link: 'https://maps.app.goo.gl/kVhMB9aU66foGMFR7' },
   { icon: '📘', label: 'Facebook',  value: 'Club Pegasos Volleyball UIO', link: 'https://www.facebook.com/search/top?q=Club%20Pegasos%20Volleyball%20UIO' },
 ];
@@ -17,8 +18,8 @@ const contactInfo = [
       <span class="badge">Contáctanos</span>
       <h2 class="section-title">¿Listo para unirte<br/><span>a los Pegasos?</span></h2>
       <p class="section-subtitle">
-        Escríbenos por WhatsApp para consultar cupos, horarios y precios.
-        Respondemos rápido.
+        Escríbenos por WhatsApp para agendar tu clase de prueba GRATIS o consultar
+        cupos en la Escuela Formativa y el Equipo Absoluto Masculino.
       </p>
     </div>
 
@@ -33,7 +34,7 @@ const contactInfo = [
               <span class="contact__item-icon">{item.icon}</span>
               <div>
                 <span class="contact__item-label">{item.label}</span>
-                <a href={item.link} target="_blank" rel="noopener noreferrer" class="contact__item-value">
+                <a href={item.link} target={item.link.startsWith('#') ? '_self' : '_blank'} rel="noopener noreferrer" class="contact__item-value">
                   {item.value}
                 </a>
               </div>
@@ -43,17 +44,17 @@ const contactInfo = [
 
         <div class="contact__whatsapp-big">
           <a
-            href="https://wa.me/593984917908?text=Hola!%20Quiero%20información%20sobre%20los%20entrenamientos%20de%20Pegasos%20Volleyball%20UIO"
+            href="https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20agendar%20mi%20clase%20de%20prueba%20GRATIS."
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-secondary"
             style="font-size: 1rem; padding: 1rem 2rem;"
           >
             <WhatsAppIcon size={20} />
-            Escribirnos por WhatsApp
+            Agendar clase de prueba GRATIS
           </a>
           <p style="font-size: 0.8rem; color: var(--color-gray); margin-top: 0.5rem;">
-            Pregunta por módulos disponibles, horarios y cupos.
+            Formativa (8–17 años) y Equipo Absoluto Masculino · Horarios 8:00 a 10:00 am
           </p>
         </div>
       </div>

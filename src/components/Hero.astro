@@ -3,10 +3,10 @@
 // Sección principal (hero). Edita el título, subtítulo y botones.
 
 const stats = [
-  { value: '8–17', label: 'Años de edad' },
-  { value: '100+', label: 'Jugadores formados' },
-  { value: 'Canchas de la Luz', label: 'Sede principal' },
-  { value: 'Sáb y Dom', label: 'Entrenamientos' },
+  { value: 'Formativa & Absoluto', label: '8-17 años y adultos' },
+  { value: '8:00 – 10:00', label: 'Sáb y Dom am' },
+  { value: 'Canchas de la Luz', label: 'Sede Norte Quito' },
+  { value: '100% Gratis', label: 'Clase de prueba' },
 ];
 
 import WhatsAppIcon from './WhatsAppIcon.astro';
@@ -30,21 +30,22 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
         <span class="hero__title-accent">formamos campeones</span>
       </h1>
       <p class="hero__description">
-        Somos <strong>Pegasos Volleyball UIO</strong>, la escuela de voleibol para niños y
-        jóvenes de <strong>8 a 17 años</strong> en Quito. Disciplina, trabajo en equipo y
-        pasión por el deporte — mucho más que una idea de negocio.
+        Somos <strong>Pegasos Volleyball UIO</strong> en Quito. Contamos con
+        <strong>Escuela Formativa (8 a 17 años)</strong> y <strong>Equipo Absoluto Masculino</strong>.
+        Entrenamos en Canchas de la Luz los fines de semana de <strong>8:00 a 10:00 am</strong>.
+        Disciplina, técnica y pasión — mucho más que una idea de negocio.
       </p>
       <div class="hero__actions">
         <a
-          href="https://wa.me/593984917908"
+          href="https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20agendar%20mi%20clase%20de%20prueba%20GRATIS."
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-secondary"
         >
           <WhatsAppIcon size={18} />
-          Inscríbete ahora
+          Clase de prueba GRATIS
         </a>
-        <a href="#programas" class="btn btn-outline">Ver programas ↓</a>
+        <a href="#clase-gratis" class="btn btn-outline">¿Cómo funciona? ↓</a>
       </div>
     </div>
 
@@ -198,9 +199,9 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
   /* Stats */
   .hero__stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 1rem;
-    max-width: 600px;
+    max-width: 680px;
     transition-delay: 0.2s;
   }
 
@@ -208,7 +209,7 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: var(--radius-md);
-    padding: 1.2rem 1rem;
+    padding: 1.4rem 1.1rem;
     text-align: center;
     backdrop-filter: blur(6px);
     transition: var(--transition);
@@ -222,17 +223,18 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
   .hero__stat-value {
     display: block;
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
     font-weight: 900;
     color: var(--color-secondary);
-    line-height: 1;
+    line-height: 1.15;
+    overflow-wrap: break-word;
   }
 
   .hero__stat-label {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     color: rgba(255,255,255,0.65);
-    margin-top: 0.35rem;
+    margin-top: 0.4rem;
     font-weight: 600;
     letter-spacing: 0.02em;
   }

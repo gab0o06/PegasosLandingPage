@@ -6,11 +6,11 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
 
 const highlights = [
   { icon: '📅', text: 'Entrenamientos todo el año, fines de semana' },
-  { icon: '⏰', text: 'Horario: sábados y domingos 10:00 a 12:30' },
-  { icon: '👦', text: 'Niños y jóvenes de 8 a 17 años' },
+  { icon: '⏰', text: 'Horario: sábados y domingos 8:00 a 10:00 am' },
+  { icon: '👦', text: 'Escuela Formativa (8 a 17 años) y Equipo Absoluto Masculino' },
   { icon: '📈', text: 'Metodología progresiva: bases, táctica y competencia' },
   { icon: '📍', text: 'Sede: Canchas de la Luz, Quito' },
-  { icon: '👨‍🏫', text: 'Entrenadores con experiencia formativa' },
+  { icon: '💥', text: 'Primera clase de prueba GRATIS sin compromiso' },
 ];
 ---
 
@@ -20,7 +20,7 @@ const highlights = [
 
       <!-- Texto -->
       <div class="permanente__content reveal">
-        <span class="badge badge--light">🏐 Escuela Permanente</span>
+        <span class="badge badge--light">🏐 Escuela Permanente & Absoluto</span>
         <h2 class="section-title" style="color: var(--color-white);">
           Entrena todo el año<br/>
           <span class="permanente__accent">con los Pegasos</span>
@@ -28,8 +28,8 @@ const highlights = [
         <p style="color: rgba(255,255,255,0.85); line-height: 1.75; margin-bottom: 1.5rem;">
           La Escuela Permanente es el corazón del club: entrenamientos
           semanales de calidad, con metodología progresiva y grupos por
-          edad y nivel. Aquí se forman los jugadores desde cero y se
-          preparan los que ya compiten.
+          edad y nivel (Escuela Formativa y Equipo Absoluto Masculino).
+          Aquí se forman los jugadores desde cero y se preparan los que ya compiten.
         </p>
 
         <ul class="permanente__features">
@@ -43,15 +43,15 @@ const highlights = [
 
         <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
           <a
-            href="https://wa.me/593984917908?text=Hola!%20Quiero%20inscribirme%20en%20la%20escuela%20permanente%20de%20Pegasos%20Volleyball"
+            href="https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20agendar%20mi%20clase%20de%20prueba%20GRATIS."
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-secondary"
           >
             <WhatsAppIcon size={18} />
-            Inscribirme — WhatsApp
+            Clase de prueba GRATIS
           </a>
-          <a href="#galeria" class="btn btn-outline">Ver galería ↓</a>
+          <a href="#clase-gratis" class="btn btn-outline">Detalles de la prueba ↓</a>
         </div>
       </div>
 
@@ -64,22 +64,22 @@ const highlights = [
           loading="lazy"
         />
         <div class="permanente__card-body">
-          <h3>Escuela Permanente</h3>
+          <h3>Club Pegasos</h3>
           <div class="permanente__card-row">
-            <span>Edad</span>
-            <strong>8 – 17 años</strong>
+            <span>Niveles</span>
+            <strong>Formativa & Absoluto</strong>
           </div>
           <div class="permanente__card-row">
             <span>Horario</span>
-            <strong>Sáb y Dom 10:00 – 12:30</strong>
+            <strong>Sáb y Dom 8:00 – 10:00 am</strong>
           </div>
           <div class="permanente__card-row">
             <span>Lugar</span>
             <strong>Canchas de la Luz, Quito</strong>
           </div>
           <div class="permanente__card-row">
-            <span>Contacto</span>
-            <strong>0984917908</strong>
+            <span>Clase Prueba</span>
+            <strong style="color: var(--color-secondary);">100% Gratis</strong>
           </div>
           <div class="permanente__card-row">
             <span>Inscripciones</span>
@@ -87,13 +87,13 @@ const highlights = [
           </div>
         </div>
         <a
-          href="https://wa.me/593984917908?text=Hola!%20Quiero%20inscribirme%20en%20la%20escuela%20permanente%20de%20Pegasos%20Volleyball"
+          href="https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20agendar%20mi%20clase%20de%20prueba%20GRATIS."
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-primary permanente__card-cta"
         >
           <WhatsAppIcon size={18} />
-          Inscribirme ahora →
+          Agendar Clase Gratis →
         </a>
       </div>
 

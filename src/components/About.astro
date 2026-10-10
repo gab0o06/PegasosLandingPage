@@ -7,6 +7,7 @@ const values = [
   { icon: '🤝', title: 'Trabajo en equipo', desc: 'El voleibol es colectivo. Aprendemos que los logros se construyen juntos.' },
   { icon: '❤️', title: 'Pasión',            desc: 'Transmitimos el amor por el deporte como motor de vida y desarrollo personal.' },
   { icon: '🌱', title: 'Comunidad',          desc: 'Somos mucho más que un club: generamos lazos, identidad y sentido de pertenencia.' },
+  { icon: '🏐', title: 'Superación',         desc: 'Cada entrenamiento es una oportunidad para superar nuestros límites y crecer.' },
 ];
 ---
 
@@ -35,17 +36,16 @@ const values = [
       <div class="about__description">
         <p>
           Con sede en <strong>Canchas de la Luz</strong>, Quito,
-          el Club Pegasos atiende a niños y jóvenes de <strong>8 a 17 años</strong> con
-          su <strong>Escuela Permanente</strong> durante todo el año, con entrenamientos
-          activos los fines de semana (sábados y domingos).
+          el Club Pegasos atiende a niños y jóvenes con su <strong>Escuela Formativa (8 a 17 años)</strong> y
+          a jugadores con experiencia previa a través de su <strong>Equipo Absoluto Masculino</strong>.
+          Entrenamos todo el año los fines de semana (<strong>sábados y domingos de 8:00 a 10:00 am</strong>).
         </p>
         <p>
-          Nuestro equipo de entrenadores guía a cada jugador con metodología progresiva:
-          desde las bases técnicas del voleibol hasta el desarrollo táctico y la
-          competencia. Los cupos son <strong>limitados</strong> para garantizar atención
-          personalizada.
+          Nuestro cuerpo técnico guía a cada deportista con metodología formativa y sistemas competitivos avanzados (5-1),
+          preparando tanto las bases técnicas como la competencia en torneos de Quito. Además,
+          ¡tu <strong>primera clase de prueba es totalmente GRATIS</strong>!
         </p>
-        <a href="#contacto" class="btn btn-primary">Conoce más → Contáctanos</a>
+        <a href="#clase-gratis" class="btn btn-primary">Ver clase de prueba gratis →</a>
       </div>
     </div>
 
@@ -119,15 +119,33 @@ const values = [
   /* Values grid */
   .about__values {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 1100px) {
+    .about__values {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .about__values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about__values {
+      grid-template-columns: 1fr;
+    }
   }
 
   .about__value-card {
     background: var(--color-bg-alt);
     border: 1px solid var(--color-gray-light);
     border-radius: var(--radius-md);
-    padding: 1.75rem 1.5rem;
+    padding: 1.25rem 1.1rem;
     transition: var(--transition);
   }
 

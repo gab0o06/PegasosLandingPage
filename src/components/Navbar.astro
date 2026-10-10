@@ -6,14 +6,34 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
 const navLinks = [
   { href: '#inicio',       label: 'Inicio' },
   { href: '#nosotros',     label: 'Nosotros' },
+  { href: '#programas',    label: 'Programas & Absoluto' },
   { href: '#permanente',   label: 'Escuela Permanente' },
-  { href: '#programas',    label: 'Programas' },
+  { href: '#clase-gratis', label: 'Clase Gratis' },
   { href: '#galeria',      label: 'Galería' },
   { href: '#contacto',     label: 'Contacto' },
 ];
 ---
 
 <header class="navbar" id="navbar">
+  <!-- Barra superior de aviso de prueba gratis -->
+  <div class="navbar__topbar">
+    <div class="container navbar__topbar-inner">
+      <span class="navbar__topbar-pill">
+        <span class="navbar__topbar-dot"></span>
+        INSCRIPCIONES ABIERTAS
+      </span>
+      <span class="navbar__topbar-text">Canchas de la Luz · Sáb y Dom 8:00 – 10:00 am</span>
+      <a
+        href="https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20agendar%20mi%20clase%20de%20prueba%20GRATIS."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="navbar__topbar-cta"
+      >
+        Primera clase de prueba GRATIS →
+      </a>
+    </div>
+  </div>
+
   <div class="navbar__inner container">
     <!-- Logo -->
     <a href="#inicio" class="navbar__logo" aria-label="Ir al inicio de Pegasos Volleyball">
@@ -45,14 +65,14 @@ const navLinks = [
 
     <!-- CTA WhatsApp -->
     <a
-      href="https://wa.me/593984917908?text=Hola!%20Deseo%20información%20sobre%20Pegasos%20Volleyball%20UIO"
+      href="https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20agendar%20mi%20clase%20de%20prueba%20GRATIS."
       target="_blank"
       rel="noopener noreferrer"
       class="btn navbar__cta"
-      aria-label="Contactar por WhatsApp"
+      aria-label="Agendar clase de prueba gratis por WhatsApp"
     >
       <WhatsAppIcon size={19} />
-      <span>WhatsApp</span>
+      <span>Prueba Gratis</span>
     </a>
 
     <!-- Hamburger (mobile) -->
@@ -74,13 +94,13 @@ const navLinks = [
         ))}
         <li>
           <a
-            href="https://wa.me/593984917908?text=Hola!%20Deseo%20información%20sobre%20Pegasos%20Volleyball%20UIO"
+            href="https://wa.me/593984917908?text=%C2%A1Hola%20Pegasos!%20%F0%9F%8F%90%20Quiero%20agendar%20mi%20clase%20de%20prueba%20GRATIS."
             target="_blank"
             rel="noopener noreferrer"
             class="btn navbar__drawer-cta"
           >
             <WhatsAppIcon size={20} />
-            <span>Contáctanos por WhatsApp</span>
+            <span>Clase de prueba GRATIS</span>
           </a>
         </li>
       </ul>
@@ -89,6 +109,66 @@ const navLinks = [
 </header>
 
 <style>
+  .navbar__topbar {
+    background: linear-gradient(90deg, #0e3a4c 0%, #16546b 50%, #2c7350 100%);
+    color: #ffffff;
+    font-size: 0.78rem;
+    padding: 0.4rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .navbar__topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .navbar__topbar-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: #a7f3d0;
+  }
+
+  .navbar__topbar-dot {
+    width: 6px;
+    height: 6px;
+    background: #34d399;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .navbar__topbar-text {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .navbar__topbar-cta {
+    color: #6ee7b7;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+
+  .navbar__topbar-cta:hover {
+    color: #ffffff;
+  }
+
   .navbar {
     position: fixed;
     top: 0;

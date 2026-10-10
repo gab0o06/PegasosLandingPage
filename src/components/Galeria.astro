@@ -7,6 +7,7 @@ const fotos = [
   { src: '/images/entrenamiento.jpg', alt: 'Entrenamiento de voleibol en las canchas' },
   { src: '/images/accion.jpg',        alt: 'Jugadora preparando un remate' },
   { src: '/images/about.jpg',         alt: 'Jugador con el uniforme oficial de Pegasos' },
+  { src: '/images/hero.jpg',          alt: 'Grupo de jugadores de Pegasos Volleyball' },
 ];
 ---
 
@@ -51,8 +52,26 @@ const fotos = [
 
   .galeria__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 1100px) {
+    .galeria__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .galeria__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 460px) {
+    .galeria__grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .galeria__item {
