@@ -184,3 +184,51 @@ ul {
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--color-bg-alt); }
 ::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 4px; }
+
+/* ---- RESPONSIVE GLOBAL ---- */
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  :root {
+    --section-padding: 3.5rem 1rem;
+    --max-width: 100%;
+  }
+
+  html { font-size: 15px; }
+
+  .btn {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.88rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  html { font-size: 14px; }
+}
+
+/* Monitores grandes */
+@media (min-width: 1600px) {
+  :root {
+    --max-width: 1440px;
+    --section-padding: 6rem 2rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --max-width: 1680px;
+    --section-padding: 7rem 2.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+  }
+}

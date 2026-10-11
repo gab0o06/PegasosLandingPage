@@ -180,4 +180,28 @@ const values = [
       grid-template-columns: 1fr;
     }
   }
+
+  @media (max-width: 480px) {
+    .about__img {
+      aspect-ratio: 1/1;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .about__values {
+      gap: 1.5rem;
+    }
+
+    .about__value-card {
+      padding: 1.75rem 1.5rem;
+    }
+
+    .about__value-title {
+      font-size: 1.15rem;
+    }
+
+    .about__value-desc {
+      font-size: 0.95rem;
+    }
+  }
 </style>

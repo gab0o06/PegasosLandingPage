@@ -257,5 +257,61 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
       font-size: 12rem;
       opacity: 0.035;
     }
+
+    .hero__content {
+      padding-block: 4rem 5rem;
+      gap: 2rem;
+    }
+
+    .hero__stats {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 100%;
+    }
+
+    .hero__stat {
+      padding: 1.1rem 0.9rem;
+    }
+
+    .hero__actions {
+      width: 100%;
+    }
+
+    .hero__actions .btn {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  /* Monitores grandes */
+  @media (min-width: 1600px) {
+    .hero {
+      padding-top: 84px;
+    }
+
+    .hero__title {
+      font-size: clamp(3rem, 5vw, 5rem);
+    }
+
+    .hero__description {
+      font-size: 1.3rem;
+      max-width: 680px;
+    }
+
+    .hero__stats {
+      max-width: 900px;
+      gap: 1.5rem;
+    }
+
+    .hero__stat {
+      padding: 2rem 1.5rem;
+    }
+
+    .hero__stat-value {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    }
+
+    .hero__stat-label {
+      font-size: 1rem;
+    }
   }
 </style>

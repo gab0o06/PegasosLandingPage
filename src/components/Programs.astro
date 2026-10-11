@@ -161,6 +161,30 @@ const programs = [
     }
   }
 
+  /* Monitores grandes: cards más anchas */
+  @media (min-width: 1600px) {
+    .programs__container {
+      max-width: 1700px;
+    }
+
+    .programs__grid {
+      gap: 1.75rem;
+    }
+
+    .program-card {
+      padding: 2.2rem 1.8rem;
+    }
+
+    .program-card__title {
+      font-size: 1.35rem;
+    }
+
+    .program-card__desc,
+    .program-card__details li {
+      font-size: 0.95rem;
+    }
+  }
+
   /* Card */
   .program-card {
     background: var(--color-white);
